@@ -86,6 +86,7 @@
             <ul class="nav">
                 <li routerLinkActive="active" *ngFor="let child of menuItem.children">
                     <a class="nav-link" [routerLink]="[menuItem.path, child.path]">
+                        <span class="sidebar-mini">{{child.ab}}</span>
                         <span class="sidebar-normal">{{child.title}}</span>
                     </a>
                 </li>

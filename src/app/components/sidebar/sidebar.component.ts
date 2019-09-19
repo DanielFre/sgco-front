@@ -20,7 +20,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/procedimento', title: 'Procedimentos', icon: 'person', class: '', type: 'link', children: null },
   { path: '/agenda', title: 'Agenda', icon: 'content_paste', class: '', type: 'link', children: null },
   { path: '/funcionario', title: 'Funcionários', icon: 'library_books', class: '', type: 'link', children: null },
-  { path: '/dashboard', title: 'Financeiro', icon: 'bubble_chart', class: '', type: 'sub', children: [{ path: '/funcionario', ab: 'library_books', title: 'ASSASA' }] },
+  { path: '/dashboard', title: 'Financeiro', icon: 'bubble_chart', class: '', type: 'sub', children: [{ path: '/funcionario', ab: 'C', title: 'Conta' }] },
   { path: '/paciente', title: 'Pacientes', icon: 'location_on', class: '', type: 'link', children: null },
   //{ path: '/notifications', title: 'Notifications',  icon:'notifications', class: '',type: '' },
   // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
