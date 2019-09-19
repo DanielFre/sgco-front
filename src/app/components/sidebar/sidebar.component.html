@@ -76,22 +76,21 @@
             <p>{{menuItem.title}}</p>
         </a>
         <!--If it have a submenu-->
-        <a data-toggle="collapse" href="#{{menuItem.title}}" *ngIf="menuItem.type === 'sub'">
+        <a class="nav-link"  data-toggle="collapse" href="#{{menuItem.title}}" *ngIf="menuItem.type === 'sub'">
             <i class="material-icons">{{menuItem.icon}}</i>
             <p>{{menuItem.title}}<b class="caret"></b></p>
         </a>
 
         <!-- Display the submenu items -->
-        <!-- <div id="{{menuItem.title}}" class="collapse" *ngIf="menuItem.type === 'sub'">
+        <div id="{{menuItem.title}}" class="collapse" *ngIf="menuItem.type === 'sub'">
             <ul class="nav">
-                <li routerLinkActive="active" *ngFor="let childitem of menuitem.children">
-                    <a [routerLink]="[menuitem.path, childitem.path]">
-                        <span class="sidebar-mini">{{childitem.ab}}</span>
-                        <span class="sidebar-normal">{{childitem.title}}</span>
+                <li routerLinkActive="active" *ngFor="let child of menuItem.children">
+                    <a class="nav-link" [routerLink]="[menuItem.path, child.path]">
+                        <span class="sidebar-normal">{{child.title}}</span>
                     </a>
                 </li>
             </ul>
-        </div> -->
+        </div> 
     </li>
 </ul>
 </div>
