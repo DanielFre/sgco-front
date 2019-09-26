@@ -21,7 +21,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/agenda', title: 'Agenda', icon: 'schedule', class: '', type: 'link', children: null},
   { path: '/funcionario', title: 'Funcionários', icon: 'person', class: '', type: 'link', children: null},
   { path: '/paciente', title: 'Pacientes', icon: 'people', class: '', type: 'link', children: null},
-  { path: '/dashboard', title: 'Financeiro', icon: 'monetization_on', class: '', type: 'sub', children: [{ path: '/funcionario', ab: 'C', title: 'Conta' },{ path: '/funcionario', ab: 'D', title: 'Despesas' },{ path: '/funcionario', ab: 'R', title: 'Receitas' }] },
+  { path: '', title: 'Financeiro', icon: 'monetization_on', class: '', type: 'sub', children: [{ path: 'conta', ab: 'C', title: 'Conta' },{ path: 'despesa', ab: 'D', title: 'Despesas' },{ path: 'receita', ab: 'R', title: 'Receitas' }] },
   //{ path: '/notifications', title: 'Notifications',  icon:'notifications', class: '',type: '' },
   // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
 ];

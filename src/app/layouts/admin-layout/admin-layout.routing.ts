@@ -8,7 +8,14 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-//import { ProcedimentoComponent } from '../../procedimento/procedimento.component';
+import { ProcedimentoComponent } from '../../procedimento/procedimento.component';
+import { AgendaComponent } from '../../agenda/agenda.component';
+import { FuncionarioComponent } from '../../funcionario/funcionario.component';
+import { ContaComponent } from '../../financeiro/conta/conta.component';
+import { DespesaComponent } from '../../financeiro/despesa/despesa.component';
+import { ReceitaComponent } from '../../financeiro/receita/receita.component';
+import { PacienteComponent } from '../../paciente/paciente.component';
+
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -61,5 +68,12 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps', component: MapsComponent },
     { path: 'notifications', component: NotificationsComponent },
     { path: 'upgrade', component: UpgradeComponent },
-    //{ path: 'procedimento', component: ProcedimentoComponent },
+    { path: 'procedimento', component: ProcedimentoComponent },
+    { path: 'agenda', component: AgendaComponent },
+    { path: 'funcionario', component: FuncionarioComponent },
+    { path: 'conta', component: ContaComponent },
+    { path: 'despesa', component: DespesaComponent },
+    { path: 'receita', component: ReceitaComponent },
+    { path: 'paciente', component: PacienteComponent },
+
 ];

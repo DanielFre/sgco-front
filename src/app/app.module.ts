@@ -20,13 +20,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { UpgradeComponent } from './upgrade/upgrade.component';
 import { AgmCoreModule } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AgendaComponent } from './agenda/agenda.component';
-import { ProcedimentoComponent } from './procedimento/procedimento.component';
-import { FuncionarioComponent } from './funcionario/funcionario.component';
-import { ContaComponent } from './financeiro/conta/conta.component';
-import { DespesaComponent } from './financeiro/despesa/despesa.component';
-import { ReceitaComponent } from './financeiro/receita/receita.component';
-import { PacienteComponent } from './paciente/paciente.component';
+
 
 @NgModule({
   imports: [
@@ -44,13 +38,7 @@ import { PacienteComponent } from './paciente/paciente.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AgendaComponent,
-    ProcedimentoComponent,
-    FuncionarioComponent,
-    ContaComponent,
-    DespesaComponent,
-    ReceitaComponent,
-    PacienteComponent,
+
 
   ],
   providers: [],
