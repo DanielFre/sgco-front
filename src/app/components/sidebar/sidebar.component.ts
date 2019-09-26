@@ -17,11 +17,11 @@ declare interface RouteInfo {
 
 export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Tela Principal', icon: 'dashboard', class: '', type: 'link', children: null },
-  { path: '/procedimento', title: 'Procedimentos', icon: 'person', class: '', type: 'sub', children: [{ path: '/funcionario', ab: 'Ag', title: 'Agendar' },{ path: '/funcionario', ab: 'Cd', title: 'Cadastrar' }] },
-  { path: '/agenda', title: 'Agenda', icon: 'content_paste', class: '', type: 'link', children: null },
-  { path: '/funcionario', title: 'Funcionários', icon: 'library_books', class: '', type: 'link', children: null },
-  { path: '/dashboard', title: 'Financeiro', icon: 'bubble_chart', class: '', type: 'sub', children: [{ path: '/funcionario', ab: 'C', title: 'Conta' }] },
-  { path: '/paciente', title: 'Pacientes', icon: 'location_on', class: '', type: 'link', children: null },
+  { path: '/procedimento', title: 'Procedimentos', icon: 'content_paste', class: '', type: 'link', children:null },
+  { path: '/agenda', title: 'Agenda', icon: 'schedule', class: '', type: 'link', children: null},
+  { path: '/funcionario', title: 'Funcionários', icon: 'person', class: '', type: 'link', children: null},
+  { path: '/paciente', title: 'Pacientes', icon: 'people', class: '', type: 'link', children: null},
+  { path: '/dashboard', title: 'Financeiro', icon: 'monetization_on', class: '', type: 'sub', children: [{ path: '/funcionario', ab: 'C', title: 'Conta' },{ path: '/funcionario', ab: 'D', title: 'Despesas' },{ path: '/funcionario', ab: 'R', title: 'Receitas' }] },
   //{ path: '/notifications', title: 'Notifications',  icon:'notifications', class: '',type: '' },
   // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
 ];
