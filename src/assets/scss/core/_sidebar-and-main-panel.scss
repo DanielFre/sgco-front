@@ -74,7 +74,9 @@
                     display: inline-block;
                     @extend .animation-transition-general;
                 }
-
+                .caret{
+                    transform: rotate(180deg);
+                }
                 .sidebar-normal{
                     margin: 0;
                     position: relative;
@@ -128,8 +130,11 @@
             margin-top: 13px;
             position: absolute;
             right: 6px;
+            &.active > [data-toggle="collapse"]{
+                transform: rotate(180deg);
+            }
         }
-
+        
         li{
             > a{
               &:hover,
@@ -406,7 +411,6 @@
     }
 }
 
-
 .sidebar,
 .main-panel,
 .sidebar-wrapper{
@@ -464,6 +468,7 @@
                     @include transform-translate-x(-25px);
                     opacity: 0;
                 }
+                
             }
         }
 

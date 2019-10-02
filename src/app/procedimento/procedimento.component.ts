@@ -9,7 +9,7 @@ export class ProcedimentoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { 
   }
 
 }

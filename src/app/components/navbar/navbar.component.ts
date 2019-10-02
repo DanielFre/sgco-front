@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
     private listTitles: any[];
+
     location: Location;
       mobile_menu_visible: any = 0;
     private toggleButton: any;
