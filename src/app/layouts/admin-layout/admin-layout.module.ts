@@ -18,6 +18,8 @@ import { ContaComponent } from '../../financeiro/conta/conta.component';
 import { DespesaComponent } from '../../financeiro/despesa/despesa.component';
 import { ReceitaComponent } from '../../financeiro/receita/receita.component';
 import { PacienteComponent } from '../../paciente/paciente.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import {
   MatButtonModule,
@@ -27,6 +29,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -39,6 +42,8 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   declarations: [
     DashboardComponent,
