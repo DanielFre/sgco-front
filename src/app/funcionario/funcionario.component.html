@@ -2,16 +2,33 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Lista de funcionários</h4>
-                        <p class="card-category"> Se quiser um subtítulo</p>
-                    </div>
-                    <div class="card-body">
+                <div class="card search">
+                    <div class="col-md-5">
                         <mat-form-field>
-                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Nome">
                         </mat-form-field>
-
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field>
+                            <mat-label>Situação</mat-label>
+                            <mat-select [(value)]="selected">
+                                <mat-option value="option1">Ativo</mat-option>
+                                <mat-option value="option2">Inativo</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
                         <div class="mat-elevation-z8">
                             <table mat-table [dataSource]="dataSource" matSort>
 
@@ -44,7 +61,7 @@
                                 </tr>
                             </table>
 
-                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                            <mat-paginator [pageSizeOptions]="[5, 10, 50, 100]"></mat-paginator>
                         </div>
                     </div>
                 </div>
