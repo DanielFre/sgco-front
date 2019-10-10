@@ -172,46 +172,46 @@
     }
   }
 
-  .card-header-primary .card-icon,
-  .card-header-primary .card-text,
-  .card-header-primary:not(.card-header-icon):not(.card-header-text),
-  &.bg-primary,
-  &.card-rotate.bg-primary .front,
-  &.card-rotate.bg-primary .back {
-    background: linear-gradient(60deg, $purple-400, $purple-600);
-  }
-  .card-header-info .card-icon,
-  .card-header-info .card-text,
-  .card-header-info:not(.card-header-icon):not(.card-header-text),
-  &.bg-info,
-  &.card-rotate.bg-info .front,
-  &.card-rotate.bg-info .back {
-    background: linear-gradient(60deg, $cyan-400, $cyan-600);
-  }
-  .card-header-success .card-icon,
-  .card-header-success .card-text,
-  .card-header-success:not(.card-header-icon):not(.card-header-text),
-  &.bg-success,
-  &.card-rotate.bg-success .front,
-  &.card-rotate.bg-success .back {
-    background: linear-gradient(60deg, $green-400, $green-600);
-  }
-  .card-header-warning .card-icon,
-  .card-header-warning .card-text,
-  .card-header-warning:not(.card-header-icon):not(.card-header-text),
-  &.bg-warning,
-  &.card-rotate.bg-warning .front,
-  &.card-rotate.bg-warning .back {
-    background: linear-gradient(60deg, $orange-400, $orange-600);
-  }
-  .card-header-danger .card-icon,
-  .card-header-danger .card-text,
-  .card-header-danger:not(.card-header-icon):not(.card-header-text),
-  &.bg-danger,
-  &.card-rotate.bg-danger .front,
-  &.card-rotate.bg-danger .back {
-    background: linear-gradient(60deg, $red-400, $red-600);
-  }
+    .card-header-primary .card-icon,
+    .card-header-primary .card-text,
+    .card-header-primary:not(.card-header-icon):not(.card-header-text),
+    &.bg-primary,
+    &.card-rotate.bg-primary .front,
+    &.card-rotate.bg-primary .back{
+      background: linear-gradient(60deg, $purple-400, $purple-600);
+    }
+    .card-header-info .card-icon,
+    .card-header-info .card-text,
+    .card-header-info:not(.card-header-icon):not(.card-header-text),
+    &.bg-info,
+    &.card-rotate.bg-info .front,
+    &.card-rotate.bg-info .back{
+      background: linear-gradient(60deg, $cyan-400, $cyan-600);
+    }
+    .card-header-success .card-icon,
+    .card-header-success .card-text,
+    .card-header-success:not(.card-header-icon):not(.card-header-text),
+    &.bg-success,
+    &.card-rotate.bg-success .front,
+    &.card-rotate.bg-success .back{
+      background: linear-gradient(60deg, $green-800, $green-600);
+    }
+    .card-header-warning .card-icon,
+    .card-header-warning .card-text,
+    .card-header-warning:not(.card-header-icon):not(.card-header-text),
+    &.bg-warning,
+    &.card-rotate.bg-warning .front,
+    &.card-rotate.bg-warning .back{
+      background: linear-gradient(60deg, $orange-400, $orange-600);
+    }
+    .card-header-danger .card-icon,
+    .card-header-danger .card-text,
+    .card-header-danger:not(.card-header-icon):not(.card-header-text),
+    &.bg-danger,
+    &.card-rotate.bg-danger .front,
+    &.card-rotate.bg-danger .back{
+      background: linear-gradient(60deg, $red-400, $red-600);
+    }
 
   .card-header-rose .card-icon,
   .card-header-rose .card-text,
