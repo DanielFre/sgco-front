@@ -10,7 +10,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ProcedimentoComponent } from '../../procedimento/procedimento.component';
 import { AgendaComponent } from '../../agenda/agenda.component';
-import { FuncionarioComponent } from '../../funcionario/funcionario.component';
+import { FuncionarioComponent } from '../../funcionarios/listar-funcionarios/funcionario.component';
 import { ContaComponent } from '../../financeiro/conta/conta.component';
 import { DespesaComponent } from '../../financeiro/despesa/despesa.component';
 import { ReceitaComponent } from '../../financeiro/receita/receita.component';
