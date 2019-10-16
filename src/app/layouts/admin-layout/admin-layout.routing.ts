@@ -10,7 +10,9 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ProcedimentoComponent } from '../../procedimento/procedimento.component';
 import { AgendaComponent } from '../../agenda/agenda.component';
-import { FuncionarioComponent } from '../../funcionarios/listar-funcionarios/funcionario.component';
+
+import { CriarFuncionarioComponent } from '../../funcionarios/criar-funcionario/criar-funcionario.component';
+import { ListarFuncionariosComponent } from '../../funcionarios/listar-funcionarios/listar-funcionarios.component';
 import { ContaComponent } from '../../financeiro/conta/conta.component';
 import { DespesaComponent } from '../../financeiro/despesa/despesa.component';
 import { ReceitaComponent } from '../../financeiro/receita/receita.component';
@@ -70,7 +72,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade', component: UpgradeComponent },
     { path: 'procedimento', component: ProcedimentoComponent },
     { path: 'agenda', component: AgendaComponent },
-    { path: 'funcionario', component: FuncionarioComponent },
+    { path: 'funcionarios/listarfuncionarios', component: ListarFuncionariosComponent },
+    { path: 'funcionarios/criarfuncionario', component: CriarFuncionarioComponent },
     { path: 'conta', component: ContaComponent },
     { path: 'despesa', component: DespesaComponent },
     { path: 'receita', component: ReceitaComponent },

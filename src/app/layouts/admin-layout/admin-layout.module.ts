@@ -13,11 +13,13 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ProcedimentoComponent} from '../../procedimento/procedimento.component';
 import { AgendaComponent } from '../../agenda/agenda.component';
-import { FuncionariosModule } from '../../funcionarios/listar-funcionarios/funcionario.component';
+import { FuncionariosModule } from '../../funcionarios/funcionarios.module';
 import { ContaComponent } from '../../financeiro/conta/conta.component';
 import { DespesaComponent } from '../../financeiro/despesa/despesa.component';
 import { ReceitaComponent } from '../../financeiro/receita/receita.component';
 import { PacienteComponent } from '../../paciente/paciente.component';
+
+
 import {PortalModule} from '@angular/cdk/portal';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -61,12 +63,17 @@ import {
   MatSelectModule
 } from '@angular/material';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
+    FuncionariosModule,
+
+
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
@@ -112,6 +119,7 @@ import {
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+
   ],
   declarations: [
     DashboardComponent,
@@ -128,6 +136,7 @@ import {
     ReceitaComponent,
     PacienteComponent,
     ProcedimentoComponent,
+    
   ]
 })
 
