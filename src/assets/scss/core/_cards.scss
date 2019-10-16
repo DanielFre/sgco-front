@@ -114,7 +114,7 @@
     }
 
     &:not([class*="card-header-"]) {
-      // @include shadow-big();
+       @include shadow-big();
     }
 
     .nav-tabs {
