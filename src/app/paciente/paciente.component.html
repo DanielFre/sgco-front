@@ -2,17 +2,39 @@
   <div class="container-fluid">
       <div class="row">
           <div class="col-md-12">
+                <div class="col-md-2 margem">
+                        <button class="btn btn-success">
+                            <i class="material-icons">  +  </i>
+                        </button>
+                    </div>
+                <div class="card search ">
+                        <div class="col-md-6 ">
+                            <mat-form-field>
+                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Nome">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2 situacao">
+                            <mat-form-field>
+                                <mat-label>Situação</mat-label>
+                                <mat-select [(value)]="selected">
+                                    <mat-option value="option1">Ativo</mat-option>
+                                    <mat-option value="option2">Inativo</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2 margempesquisa">
+                            <button class="btn btn-primary">
+                                <i class="material-icons">search</i>
+                            </button>
+                        </div>
+                    </div>
               <div class="card">
-                  <div class="card-header card-header-success">
+                  <!-- <div class="card-header card-header-success">
                       <h4 class="card-title ">Lista de Pacientes</h4>
                       <p class="card-category">...</p>
-                  </div>
+                  </div> -->
                   <div class="card-body">
-                      <mat-form-field>
-                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                      </mat-form-field>
-
-                      <div class="mat-elevation-z8">
+                      <!-- <div class="mat-elevation-z8"> -->
                           <table mat-table [dataSource]="dataSource" matSort>
 
                               <!-- ID Column -->
@@ -46,7 +68,7 @@
 
                           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                       </div>
-                  </div>
+                  <!-- </div> -->
               </div>
           </div>
       </div>
