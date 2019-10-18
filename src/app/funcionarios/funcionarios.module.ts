@@ -47,13 +47,13 @@ import {
 
 import { ListarFuncionariosComponent } from './listar-funcionarios/listar-funcionarios.component';
 import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario.component';
-
+import { ColorPickerModule} from 'ngx-color-picker';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-
+    ColorPickerModule,
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
