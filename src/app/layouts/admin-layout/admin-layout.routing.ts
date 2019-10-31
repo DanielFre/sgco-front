@@ -17,6 +17,8 @@ import { ContaComponent } from '../../financeiro/conta/conta.component';
 import { DespesaComponent } from '../../financeiro/despesa/despesa.component';
 import { ReceitaComponent } from '../../financeiro/receita/receita.component';
 import { PacienteComponent } from '../../paciente/paciente.component';
+import { CriarPacienteComponent } from '../../paciente/criar-paciente/criar-paciente.component';
+
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -78,5 +80,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'despesa', component: DespesaComponent },
     { path: 'receita', component: ReceitaComponent },
     { path: 'paciente', component: PacienteComponent },
+    { path: 'listar-paciente', component: CriarPacienteComponent },
 
 ];

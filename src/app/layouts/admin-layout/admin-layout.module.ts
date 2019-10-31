@@ -18,6 +18,7 @@ import { ContaComponent } from '../../financeiro/conta/conta.component';
 import { DespesaComponent } from '../../financeiro/despesa/despesa.component';
 import { ReceitaComponent } from '../../financeiro/receita/receita.component';
 import { PacienteComponent } from '../../paciente/paciente.component';
+import { CriarPacienteComponent} from '../../paciente/criar-paciente/criar-paciente.component'
 
 
 import {PortalModule} from '@angular/cdk/portal';
@@ -62,6 +63,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { from } from 'rxjs';
 
 
 
@@ -136,6 +138,7 @@ import {
     ReceitaComponent,
     PacienteComponent,
     ProcedimentoComponent,
+    CriarPacienteComponent,
     
   ]
 })

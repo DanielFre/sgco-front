@@ -7,17 +7,19 @@ import {MatTableDataSource} from '@angular/material/table';
 
 export interface UserData {
   id: string;
-  name: string;
-  progress: string;
-  color: string;
+  nome: string;
+  cpf: string;
+  situacao: boolean;
+
 }
 
 /** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray', 'red'
-];
-const NAMES: string[] = [
+// const COLORS: string[] = [
+//   'maroon', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
+//   'aqua', 'blue', 'navy', 'black', 'gray', 'red'
+// ];
+
+const NOMES: string[] = [
   'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
   'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
 ];
@@ -34,16 +36,19 @@ const NAMES: string[] = [
   styleUrls: ['./paciente.component.scss']
 })
 
+
 export class PacienteComponent implements OnInit {
 
 
   
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'situacao', 'actions'];
+  // displayedColumns: string[] = ['id', 'name', 'progress', 'actions'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
+ 
+  
 
   constructor() { 
 
@@ -73,14 +78,14 @@ export class PacienteComponent implements OnInit {
 
 /** Builds and returns a new User. */
 function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+  const nome = NOMES[Math.round(Math.random() * (NOMES.length - 1))] + ' ' +
+    NOMES[Math.round(Math.random() * (NOMES.length - 1))].charAt(0) + '.';
 
   return {
     id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
+    nome: nome,
+    cpf: (Math.round(Math.random() * 999).toString() + "." + Math.round(Math.random() * 999).toString()
+      + "." + Math.round(Math.random() * 999).toString() + "-" + Math.round(Math.random() * 99).toString()),
+    situacao: true,
   };
-
 }
