@@ -1,15 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AdminLayoutRoutes } from './admin-layout.routing';
-
-import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
-
-import { FuncionariosModule } from '../../modules/funcionarios/funcionarios.module';
-import { PacienteModule } from '../../modules/paciente/paciente.module';
+import { RouterModule } from '@angular/router';
 
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -43,6 +34,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import {
   MatButtonModule,
@@ -52,18 +45,16 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
-import { from } from 'rxjs';
+
+import { CriarPacienteComponent } from './criar-paciente/criar-paciente.component';
+import { ListarPacientesComponent } from './listar-pacientes/listar-pacientes.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-
-    FuncionariosModule,
-    PacienteModule,
-
+    RouterModule,
+    ColorPickerModule,
+    SweetAlert2Module.forRoot(),
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
@@ -108,13 +99,9 @@ import { from } from 'rxjs';
     MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule,
-
+    ScrollingModule
   ],
-  declarations: [
-    DashboardComponent,
-    UserProfileComponent
-  ]
+  declarations: [CriarPacienteComponent, ListarPacientesComponent],
+  exports: [CriarPacienteComponent, ListarPacientesComponent],
 })
-
-export class AdminLayoutModule { }
+export class PacienteModule { }
