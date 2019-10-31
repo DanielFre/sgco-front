@@ -48,12 +48,14 @@ import {
 import { ListarFuncionariosComponent } from './listar-funcionarios/listar-funcionarios.component';
 import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario.component';
 import { ColorPickerModule} from 'ngx-color-picker';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     ColorPickerModule,
+    SweetAlert2Module.forRoot(),
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
