@@ -5,11 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
-import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
-import { FuncionariosModule } from '../../modules/funcionarios/funcionarios.module';
-import { PacienteModule } from '../../modules/paciente/paciente.module';
+import { FuncionariosModule } from '../funcionarios/funcionarios.module';
+import { PacienteModule } from '../paciente/paciente.module';
 
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -52,7 +52,6 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
-import { from } from 'rxjs';
 
 @NgModule({
   imports: [
@@ -108,8 +107,7 @@ import { from } from 'rxjs';
     MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule,
-
+    ScrollingModule
   ],
   declarations: [
     DashboardComponent,

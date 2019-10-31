@@ -8,10 +8,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './modules/components/components.module';
 
 import { AppComponent } from './app.component';
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminLayoutComponent } from './modules/admin-layout/admin-layout.component';
 
 @NgModule({
   imports: [
