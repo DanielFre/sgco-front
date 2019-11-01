@@ -1,34 +1,27 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminLayoutComponent } from './modules/admin-layout/admin-layout.component';
+import { AuthenticationComponent } from './modules/authentication/authentication.component';
+import { HomeComponent } from './modules/home/home.component';
+import { PacienteComponent } from './modules/paciente/paciente.component';
+import { FuncionarioComponent } from './modules/funcionario/funcionario.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: './modules/admin-layout/admin-layout.module#AdminLayoutModule'
-    }]
-  }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: AuthenticationComponent, children: [{ path: '', loadChildren: './modules/authentication/authentication.module#AuthenticationModule' }] },
+
+  { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, children: [{ path: '', loadChildren: './modules/home/home.module#HomeModule' }] },
+
+  { path: 'paciente', redirectTo: 'listar', pathMatch: 'full' },
+  { path: 'paciente', component: PacienteComponent, children: [{ path: '', loadChildren: './modules/paciente/paciente.module#PacienteModule' }] },
+
+  { path: 'funcionario', redirectTo: 'listar', pathMatch: 'full' },
+  { path: 'funcionario', component: FuncionarioComponent, children: [{ path: '', loadChildren: './modules/funcionario/funcionario.module#FuncionarioModule' }] }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule.forRoot(routes, {
-      useHash: true
-    })
-  ],
-  exports: [
-  ],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

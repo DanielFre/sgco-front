@@ -1,16 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AdminLayoutRoutes } from './admin-layout.routing';
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-
-import { FuncionariosModule } from '../funcionarios/funcionarios.module';
-import { PacienteModule } from '../paciente/paciente.module';
-
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -43,7 +34,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
-
 import {
   MatButtonModule,
   MatInputModule,
@@ -53,16 +43,19 @@ import {
   MatSelectModule
 } from '@angular/material';
 
+import { HomeRoutingModule } from './home.routing';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
 @NgModule({
+  declarations: [DashboardComponent, PerfilComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
+    HomeRoutingModule,
+    
     FormsModule,
     ReactiveFormsModule,
-
-    FuncionariosModule,
-    PacienteModule,
-
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
@@ -108,11 +101,6 @@ import {
     MatTreeModule,
     PortalModule,
     ScrollingModule
-  ],
-  declarations: [
-    DashboardComponent,
-    UserProfileComponent
   ]
 })
-
-export class AdminLayoutModule { }
+export class HomeModule { }

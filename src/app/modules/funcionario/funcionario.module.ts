@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -36,7 +35,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
 import {
   MatButtonModule,
   MatInputModule,
@@ -46,13 +44,16 @@ import {
   MatSelectModule
 } from '@angular/material';
 
+import { FuncionarioRoutingModule } from './funcionario.routing';
+
 import { ListarFuncionariosComponent } from './listar-funcionarios/listar-funcionarios.component';
 import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
+    FuncionarioRoutingModule,
+
     ColorPickerModule,
     SweetAlert2Module.forRoot(),
     MatButtonModule,
@@ -110,4 +111,4 @@ import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario
     ListarFuncionariosComponent
   ]
 })
-export class FuncionariosModule { }
+export class FuncionarioModule { }

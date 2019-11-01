@@ -8,7 +8,10 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './modules/components/components.module';
 
 import { AppComponent } from './app.component';
-import { AdminLayoutComponent } from './modules/admin-layout/admin-layout.component';
+import { AuthenticationComponent } from './modules/authentication/authentication.component';
+import { HomeComponent } from './modules/home/home.component';
+import { PacienteComponent } from './modules/paciente/paciente.component';
+import { FuncionarioComponent } from './modules/funcionario/funcionario.component';
 
 @NgModule({
   imports: [
@@ -22,7 +25,10 @@ import { AdminLayoutComponent } from './modules/admin-layout/admin-layout.compon
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AuthenticationComponent,
+    HomeComponent,
+    PacienteComponent,
+    FuncionarioComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
