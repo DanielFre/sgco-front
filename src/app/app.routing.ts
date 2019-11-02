@@ -5,6 +5,7 @@ import { AuthenticationComponent } from './modules/authentication/authentication
 import { HomeComponent } from './modules/home/home.component';
 import { PacienteComponent } from './modules/paciente/paciente.component';
 import { FuncionarioComponent } from './modules/funcionario/funcionario.component';
+import { ProcedimentoComponent } from './modules/procedimento/procedimento.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,7 +18,10 @@ const routes: Routes = [
   { path: 'paciente', component: PacienteComponent, children: [{ path: '', loadChildren: './modules/paciente/paciente.module#PacienteModule' }] },
 
   { path: 'funcionario', redirectTo: 'listar', pathMatch: 'full' },
-  { path: 'funcionario', component: FuncionarioComponent, children: [{ path: '', loadChildren: './modules/funcionario/funcionario.module#FuncionarioModule' }] }
+  { path: 'funcionario', component: FuncionarioComponent, children: [{ path: '', loadChildren: './modules/funcionario/funcionario.module#FuncionarioModule' }] },
+
+  { path: 'procedimento', redirectTo: 'listar', pathMatch: 'full' },
+  { path: 'procedimento', component: ProcedimentoComponent, children: [{ path: '', loadChildren: './modules/procedimento/procedimento.module#ProcedimentoModule' }] }
 ];
 
 @NgModule({

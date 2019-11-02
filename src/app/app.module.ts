@@ -14,6 +14,11 @@ import { HomeComponent } from './modules/home/home.component';
 import { PacienteComponent } from './modules/paciente/paciente.component';
 import { FuncionarioComponent } from './modules/funcionario/funcionario.component';
 
+import { ProcedimentoService } from './core/services/domain/procedimento.service';
+import { ErrorInterceptorProvider } from './core/interceptors/error-interceptor';
+import { ProcedimentoComponent } from './modules/procedimento/procedimento.component';
+import { AuthService } from './core/services/auth.service';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -31,9 +36,14 @@ import { FuncionarioComponent } from './modules/funcionario/funcionario.componen
     AuthenticationComponent,
     HomeComponent,
     PacienteComponent,
-    FuncionarioComponent
+    FuncionarioComponent,
+    ProcedimentoComponent
   ],
-  providers: [],
+  providers: [
+    ProcedimentoService,
+    ErrorInterceptorProvider,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
