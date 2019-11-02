@@ -1,5 +1,15 @@
-<p>
-  login works!
-</p>
+<div>
+	<div>
+		<p>Email</p>
+		<input [(ngModel)]="creds.email" name="email" type="email">
+	</div>
 
-<a routerLink="/home">Dashboard</a>
+	<div>
+		<p>Senha</p>
+		<input [(ngModel)]="creds.senha" name="senha" type="password">
+	</div>
+
+	<button (click)="login()">Entrar</button>
+</div>
+
+<a routerLink="">Esqueci senha</a>

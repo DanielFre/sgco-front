@@ -34,14 +34,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
-import {
-  MatButtonModule,
-  MatInputModule,
-  MatRippleModule,
-  MatFormFieldModule,
-  MatTooltipModule,
-  MatSelectModule
-} from '@angular/material';
+import { MatButtonModule, MatInputModule, MatRippleModule, MatFormFieldModule, MatTooltipModule, MatSelectModule } from '@angular/material';
 
 import { HomeRoutingModule } from './home.routing';
 
@@ -49,11 +42,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
-  declarations: [DashboardComponent, PerfilComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule,
-    
+
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -67,7 +58,6 @@ import { PerfilComponent } from './perfil/perfil.component';
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
-    MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
@@ -79,28 +69,29 @@ import { PerfilComponent } from './perfil/perfil.component';
     MatExpansionModule,
     MatGridListModule,
     MatIconModule,
-    MatInputModule,
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
-    MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
-    MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    MatRippleModule,
+
+    HomeRoutingModule
+  ],
+  declarations: [
+    DashboardComponent,
+    PerfilComponent
   ]
 })
 export class HomeModule { }

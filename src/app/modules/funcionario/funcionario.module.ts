@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -35,14 +36,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import {
-  MatButtonModule,
-  MatInputModule,
-  MatRippleModule,
-  MatFormFieldModule,
-  MatTooltipModule,
-  MatSelectModule
-} from '@angular/material';
+import { MatButtonModule, MatInputModule, MatRippleModule, MatFormFieldModule, MatTooltipModule, MatSelectModule } from '@angular/material';
 
 import { FuncionarioRoutingModule } from './funcionario.routing';
 
@@ -52,10 +46,9 @@ import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario
 @NgModule({
   imports: [
     CommonModule,
-    FuncionarioRoutingModule,
 
-    ColorPickerModule,
-    SweetAlert2Module.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
@@ -67,7 +60,6 @@ import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
-    MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
@@ -79,34 +71,29 @@ import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario
     MatExpansionModule,
     MatGridListModule,
     MatIconModule,
-    MatInputModule,
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
-    MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
-    MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
     MatTreeModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    ColorPickerModule,
+    SweetAlert2Module.forRoot(),
+    MatRippleModule,
+
+    FuncionarioRoutingModule
   ],
   declarations: [
-    CriarFuncionarioComponent,
-    ListarFuncionariosComponent
-  ],
-  exports: [
     CriarFuncionarioComponent,
     ListarFuncionariosComponent
   ]
