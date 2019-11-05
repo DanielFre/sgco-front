@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'app/core/services/storage.service';
 
 @Component({
   selector: 'app-perfil',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor() { }
+  email: string;
+
+  constructor(public storage: StorageService) { }
 
   ngOnInit() {
+    let localUser = this.storage.getLocalUser();
+
+    if (localUser && localUser.email) {
+      this.email = localUser.email;
+    }
   }
 
 }

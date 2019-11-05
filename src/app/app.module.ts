@@ -18,6 +18,7 @@ import { ProcedimentoService } from './core/services/domain/procedimento.service
 import { ErrorInterceptorProvider } from './core/interceptors/error-interceptor';
 import { ProcedimentoComponent } from './modules/procedimento/procedimento.component';
 import { AuthService } from './core/services/auth.service';
+import { StorageService } from './core/services/storage.service';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { AuthService } from './core/services/auth.service';
   providers: [
     ProcedimentoService,
     ErrorInterceptorProvider,
-    AuthService
+    AuthService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

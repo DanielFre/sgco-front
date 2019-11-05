@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 		this.auth.authenticate(this.creds)
 			.subscribe(
 				response => {
-					console.log(response.headers.get('Authorization'));
+					this.auth.successfulLogin(response.headers.get('Authorization'));
 					this.router.navigateByUrl('/home');
 				},
 				error => { }
