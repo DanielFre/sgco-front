@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-criar-funcionario',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarFuncionarioComponent implements OnInit {
 
+  isDentist: boolean;
+
   constructor() { }
 
   ngOnInit() {
+    this.isDentist = false;
   }
+  isWorkerDentist() {
+    if (this.isDentist) {
+      this.isDentist = false;
+    } else {
+      this.isDentist = true;
+    }
+  }
+
 
 }
