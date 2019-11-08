@@ -20,8 +20,8 @@ const routes: Routes = [
   { path: 'funcionario', redirectTo: 'listar', pathMatch: 'full' },
   { path: 'funcionario', component: FuncionarioComponent, children: [{ path: '', loadChildren: './modules/funcionario/funcionario.module#FuncionarioModule' }] },
 
-  { path: 'procedimento', redirectTo: 'listar', pathMatch: 'full' },
-  { path: 'procedimento', component: ProcedimentoComponent, children: [{ path: '', loadChildren: './modules/procedimento/procedimento.module#ProcedimentoModule' }] }
+  { path: 'procedimentos', redirectTo: 'listar', pathMatch: 'full' },
+  { path: 'procedimentos', component: ProcedimentoComponent, children: [{ path: '', loadChildren: './modules/procedimento/procedimento.module#ProcedimentoModule' }] }
 ];
 
 @NgModule({

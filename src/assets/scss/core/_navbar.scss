@@ -120,6 +120,18 @@
         padding: $padding-general-y 0;
         font-weight: 300;
         margin-left: 1rem;
+        &:hover {
+          color: $purple-500;
+      }
+    }
+
+    .arrow {
+      margin-left: 0;
+      margin-right: 0;
+      font-style: normal;
+      &:hover {
+        color:  inherit;
+      }
     }
 
     > .container {
@@ -226,6 +238,10 @@
         }
     }
   }
+}
+
+.navbar-nav {
+  flex-direction: row !important;
 }
 
 .off-canvas-sidebar{

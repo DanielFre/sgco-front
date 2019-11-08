@@ -1,107 +1,99 @@
 <div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header card-header-danger">
-            <h4 class="card-title">Edit Profile</h4>
-            <p class="card-category">Complete your profile</p>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-5">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Company (disabled)" disabled>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-3">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Username" value="{{usuario?.nome}}">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email address" type="email" value="{{usuario?.email}}">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Fist Name" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Last Name" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Adress" type="text" value="{{usuario?.endereco.logradouro}}">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="City" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Country" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Postal Code" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>About Me</label>
-                  <mat-form-field class="example-full-width">
-                    <textarea matInput
-                      placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                  </mat-form-field>
-                  <!-- <div class="form-group">
-
-                                      <div class="form-group">
-                                          <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                          <textarea class="form-control" rows="5"></textarea>
-                                      </div>
-                                  </div> -->
-                </div>
-              </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
-              <div class="clearfix"></div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-profile">
-          <div class="card-avatar">
-            <a href="javascript:void(0)">
-              <img class="img" src="./assets/img/faces/marc.jpg" />
-            </a>
-          </div>
-          <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
-              Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-            </p>
-            <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card card-profile">
+					<div class="card-avatar">
+						<a href="javascript:void(0)">
+							<img class="img" src="./assets/img/faces/marc.jpg" />
+						</a>
+					</div>
+					<div class="card-body">
+						<h6 class="card-category text-gray">{{usuario?.tipo}}</h6>
+						<h4 class="card-title">{{usuario?.nome}}</h4>
+						<p class="card-description">{{usuario?.email}}</p>
+						<p class="card-description">CPF: {{usuario?.cpf}}</p>
+						<p class="card-description">Data de Nascimento: {{usuario?.nascimento}}</p>
+						<a href="javascript:void(0)" class="btn btn-primary btn-round">Alterar Senha</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Informações Adicionais</h4>
+						<p class="card-category">Dados de contato e endereço</p>
+					</div>
+					<div class="card-body">
+						<form>
+							<div class="row">
+								<div class="col-md-5">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="E-mail" type="email" value="{{usuario?.contato?.email}}" readonly>
+									</mat-form-field>
+								</div>
+								<div class="col-md-3">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Telefone 1" type="text" value="{{usuario?.contato?.telefone1}}" readonly>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Telefone 2" type="text" value="{{usuario?.contato?.telefone2}}" readonly>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-5">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Logradouro" type="text" value="{{usuario?.endereco?.logradouro}}" readonly>
+									</mat-form-field>
+								</div>
+								<div class="col-md-2">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Número" type="text" value="{{usuario?.endereco?.numero}}" readonly>
+									</mat-form-field>
+								</div>
+								<div class="col-md-5">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Bairro" type="text" value="{{usuario?.endereco?.bairro}}" readonly>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-8">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Complemento" type="text" value="{{usuario?.endereco?.complemento}}" readonly>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="CEP" type="text" value="{{usuario?.endereco?.cep}}" readonly>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Cidade" type="text" value="{{usuario?.endereco?.cidade}}" readonly>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Estado" type="text" value="{{usuario?.endereco?.estado}}" readonly>
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Pais" type="text" value="{{usuario?.endereco?.pais}}" readonly>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
