@@ -10,13 +10,9 @@ import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './modules/authentication/authentication.component';
-import { HomeComponent } from './modules/home/home.component';
-import { PacienteComponent } from './modules/paciente/paciente.component';
-import { FuncionarioComponent } from './modules/funcionario/funcionario.component';
 
 import { ProcedimentoService } from './core/services/domain/procedimento.service';
 import { ErrorInterceptorProvider } from './core/interceptors/error-interceptor';
-import { ProcedimentoComponent } from './modules/procedimento/procedimento.component';
 import { AuthService } from './core/services/auth.service';
 import { StorageService } from './core/services/storage.service';
 import { UsuarioService } from './core/services/domain/usuario.service';
@@ -35,11 +31,7 @@ import { UsuarioService } from './core/services/domain/usuario.service';
   declarations: [
     AppComponent,
 
-    AuthenticationComponent,
-    HomeComponent,
-    PacienteComponent,
-    FuncionarioComponent,
-    ProcedimentoComponent
+    AuthenticationComponent
   ],
   providers: [
     ProcedimentoService,

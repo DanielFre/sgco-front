@@ -41,6 +41,7 @@ import { MatButtonModule, MatInputModule, MatRippleModule, MatFormFieldModule, M
 import { ProcedimentoRoutingModule } from './procedimento.routing';
 
 import { ListarProcedimentosComponent } from './listar-procedimentos/listar-procedimentos.component';
+import { CriarProcedimentoComponent } from './criar-procedimento/criar-procedimento.component';
 
 @NgModule({
   imports: [
@@ -93,7 +94,8 @@ import { ListarProcedimentosComponent } from './listar-procedimentos/listar-proc
     ProcedimentoRoutingModule
   ],
   declarations: [
-    ListarProcedimentosComponent
+    ListarProcedimentosComponent,
+    CriarProcedimentoComponent
   ]
 })
 export class ProcedimentoModule { }

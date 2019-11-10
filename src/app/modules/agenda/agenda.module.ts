@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgendaComponent } from './agenda.component';
+
+import { AgendaRoutingModule } from './agenda.routing';
+
 import { CriarAgendamentoComponent } from './criar-agendamento/criar-agendamento.component';
+import { ListarAgendamentosComponent } from './listar-agendamentos/listar-agendamentos.component';
 
 @NgModule({
-  declarations: [AgendaComponent, CriarAgendamentoComponent],
-  imports: [
-    CommonModule
-  ]
+	imports: [
+		CommonModule,
+
+		AgendaRoutingModule
+	],
+	declarations: [
+		CriarAgendamentoComponent,
+		ListarAgendamentosComponent
+	]
 })
 export class AgendaModule { }

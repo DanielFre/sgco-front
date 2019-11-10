@@ -15,11 +15,42 @@ const TITLES: TitleInfo[] = [
     { path: '/home', title: 'Tela Principal' },
     { path: '/home/dashboard', title: 'Tela Principal' },
     { path: '/home/perfil', title: 'Perfil' },
+
     { path: '/procedimentos', title: 'Procedimentos' },
     { path: '/procedimentos/listar', title: 'Procedimentos' },
     { path: '/procedimentos/cadastrar', title: 'Cadastrar' },
-    { path: '/agenda', title: 'Agenda' }
+
+    { path: '/agenda', title: 'Agenda' },
+    { path: '/agenda/listar', title: 'Agenda' },
+    { path: '/agenda/cadastrar', title: 'Agendar' },
+
+    { path: '/pacientes', title: 'Pacientes' },
+    { path: '/pacientes/listar', title: 'Pacientes' },
+    { path: '/pacientes/cadastrar', title: 'Cadastrar' },
+
+    { path: '/funcionarios', title: 'Funcionários' },
+    { path: '/funcionarios/listar', title: 'Funcionários' },
+    { path: '/funcionarios/cadastrar', title: 'Cadastrar' },
+
+    { path: '/financeiro', title: 'Financeiro' },
+
+    { path: '/financeiro/contas', title: 'Contas' },
+    { path: '/financeiro/contas/listar', title: 'Contas' },
+    { path: '/financeiro/contas/cadastrar', title: 'Cadastrar' },
+
+    { path: '/financeiro/despesas', title: 'Despesas' },
+    { path: '/financeiro/despesas/listar', title: 'Despesas' },
+    { path: '/financeiro/despesas/cadastrar', title: 'Cadastrar' },
+
+    { path: '/financeiro/receitas', title: 'Receitas' },
+    { path: '/financeiro/receitas/listar', title: 'Receitas' },
+    { path: '/financeiro/receitas/cadastrar', title: 'Cadastrar' },
 ];
+
+const EXCLUDED: string[] = [
+    "/home/dashboard", "/procedimentos/listar", "/agenda/listar", "/pacientes/listar", "/funcionarios/listar",
+    "/financeiro/contas/listar", "/financeiro/despesas/listar", "/financeiro/receitas/listar"
+]
 
 @Component({
     selector: 'app-navbar',
@@ -156,7 +187,7 @@ export class NavbarComponent implements OnInit {
         urls.forEach(url => {
             urlCompleta += "/" + url;
 
-            if (urlCompleta != "/home/dashboard") {
+            if (EXCLUDED.indexOf(urlCompleta) == -1) {
                 let nav: Navegacao = { path: urlCompleta, title: this.getTitle(urlCompleta) };
                 navegacao.push(nav);
             }
