@@ -2,8 +2,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="card card-body">
-        <full-calendar deepChangeDetection="true" defaultView="dayGridMonth" [plugins]="calendarPlugins">
-        </full-calendar>
+        <full-calendar #calendar defaultView="dayGridMonth" [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }" [plugins]="calendarPlugins" [weekends]="calendarWeekends" [events]="calendarEvents"
+          (dateClick)="handleDateClick($event)"></full-calendar>
       </div>
     </div>
   </div>
