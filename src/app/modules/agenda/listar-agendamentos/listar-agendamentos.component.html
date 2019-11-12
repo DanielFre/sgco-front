@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="card card-body">
-        <full-calendar #calendar defaultView="dayGridMonth" [header]="{
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      }" [plugins]="calendarPlugins" [weekends]="calendarWeekends" [events]="calendarEvents"
-          (dateClick)="handleDateClick($event)"></full-calendar>
+        <full-calendar defaultView="dayGridMonth" [header]="{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          }" [plugins]="calendarPlugins" [weekends]="calendarWeekends" [events]="calendarEvents"
+          (dateClick)="handleDateClick($event)" locale ="pt-br"></full-calendar>
       </div>
     </div>
   </div>
