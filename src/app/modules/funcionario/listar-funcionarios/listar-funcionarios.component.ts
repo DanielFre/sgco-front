@@ -52,6 +52,9 @@ export class ListarFuncionariosComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  deleteUser(){
+    
+  }
 }
 
 /** Builds and returns a new User. */

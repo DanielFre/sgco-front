@@ -23,7 +23,7 @@
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary" [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
+                        <button class="btn btn-primary">
                             <i class="material-icons">search</i>
                         </button>
                     </div>
@@ -71,12 +71,11 @@
                                     <button mat-button class="btn btn-success" type="button">
                                         <i class="material-icons">edit</i>
                                     </button>
-                                    <button mat-button class="btn btn-danger" type="button">
+                                    <button mat-button class="btn btn-danger" type="button" [swal]="deleteSwal">
                                         <i class="material-icons">close</i>
                                     </button>
                                 </td>
                             </ng-container>
-
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                             </tr>
@@ -89,5 +88,7 @@
             </div>
         </div>
     </div>
-
+    <swal #deleteSwal title="Delete?" text="This cannot be undone" icon="question"
+        [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteUser()">
+    </swal>
 </div>
