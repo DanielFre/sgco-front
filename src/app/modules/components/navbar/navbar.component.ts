@@ -59,7 +59,7 @@ const EXCLUDED: string[] = [
 })
 export class NavbarComponent implements OnInit {
     private listTitles: any[];
-    private listNavegacao: Navegacao[];
+    listNavegacao: Navegacao[];
 
     location: Location;
     mobile_menu_visible: any = 0;

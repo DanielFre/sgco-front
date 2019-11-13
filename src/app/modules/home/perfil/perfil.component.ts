@@ -30,7 +30,9 @@ export class PerfilComponent implements OnInit {
 							this.usuario.tipo += " - CRM/CRO " + this.usuario.crmCro;
 						}
 
-						//buscar imagem
+						if (this.usuario.imagem) {
+							this.usuario.imagem = "./assets/img/faces/" + this.usuario.imagem + ".jpg";
+						}
 					},
 					error => { }
 				);
