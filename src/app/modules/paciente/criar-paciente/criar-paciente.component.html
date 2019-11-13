@@ -2,11 +2,19 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+          <div class="margem">
+              <button (click)="openConfirmationDialog()" class="btn btn-success"   routerLink="../listar">
+                <i class="material-icons"> arrow_back </i>
+              </button>
+              
+              <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button>
+
+            </div>
         <div class="card">
-          <div class="card-header card-header-danger">
+          <!-- <div class="card-header card-header-danger">
             <h4 class="card-title">Informações Paciente</h4>
             <p class="card-category">...</p>
-          </div>
+          </div> -->
           <div class="card-body">
             <form>
               <div class="row">
@@ -58,11 +66,11 @@
                       (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
                       (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)" />
                   </div> -->
-                <div class="col-md-7">
+                <!-- <div class="col-md-7">
                   <mat-form-field class="example-full-width">
                     <input matInput placeholder="Cadastro regional de medicina" type="text">
                   </mat-form-field>
-                </div>
+                </div> -->
               </div>
               <div class="row">
                 <div class="col-md-4">
@@ -109,7 +117,7 @@
                     <input matInput placeholder="Telefone" type="text">
                   </mat-form-field>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <div class="form-check">
                     <label class="form-check-label">
                       <input class="form-check-input" type="checkbox" value="">
@@ -119,9 +127,9 @@
                       </span>
                     </label>
                   </div>
-                </div>
+                </div> -->
               </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right">Cadastrar Paciente</button>
               <div class="clearfix"></div>
             </form>
           </div>
