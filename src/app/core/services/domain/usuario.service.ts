@@ -11,13 +11,7 @@ export class UsuarioService {
     constructor(public http: HttpClient, public storage: StorageService) { }
 
     public findPerfil(email: string): Observable<UsuarioPerfilDTO> {
-
-        let token = this.storage.getLocalUser().token;
-        let authHeader = new HttpHeaders({ 'Authorization': 'Bearer ' + token })
-
-        return this.http.get<UsuarioPerfilDTO>(
-            `${API_CONFIG.baseUrl}/perfil/${email}`,
-            { 'headers': authHeader });
+        return this.http.get<UsuarioPerfilDTO>(`${API_CONFIG.baseUrl}/perfil/${email}`);
     }
 
 }

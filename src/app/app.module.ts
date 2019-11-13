@@ -11,35 +11,38 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './modules/authentication/authentication.component';
 
-import { ProcedimentoService } from './core/services/domain/procedimento.service';
+
+import { AuthInterceptorProvider } from './core/interceptors/auth-interceptor';
 import { ErrorInterceptorProvider } from './core/interceptors/error-interceptor';
-import { AuthService } from './core/services/auth.service';
 import { StorageService } from './core/services/storage.service';
+import { AuthService } from './core/services/auth.service';
 import { UsuarioService } from './core/services/domain/usuario.service';
+import { ProcedimentoService } from './core/services/domain/procedimento.service';
 
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
+	imports: [
+		BrowserAnimationsModule,
 
-    HttpClientModule,
-    RouterModule,
+		HttpClientModule,
+		RouterModule,
 
-    ComponentsModule,
+		ComponentsModule,
 
-    AppRoutingModule
-  ],
-  declarations: [
-    AppComponent,
+		AppRoutingModule
+	],
+	declarations: [
+		AppComponent,
 
-    AuthenticationComponent
-  ],
-  providers: [
-    ProcedimentoService,
-    ErrorInterceptorProvider,
-    AuthService,
-    StorageService,
-    UsuarioService
-  ],
-  bootstrap: [AppComponent]
+		AuthenticationComponent
+	],
+	providers: [
+		AuthInterceptorProvider,
+		ErrorInterceptorProvider,
+		StorageService,
+		AuthService,
+		UsuarioService,
+		ProcedimentoService
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
