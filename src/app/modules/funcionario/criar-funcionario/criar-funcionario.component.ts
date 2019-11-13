@@ -9,18 +9,20 @@ import { CheckboxControlValueAccessor } from '@angular/forms';
 export class CriarFuncionarioComponent implements OnInit {
 
   isDentist: boolean;
+  hasUser: boolean;
 
   constructor() { }
 
   ngOnInit() {
     this.isDentist = false;
+    this.hasUser = false;
   }
+
   isWorkerDentist() {
-    if (this.isDentist) {
-      this.isDentist = false;
-    } else {
-      this.isDentist = true;
-    }
+    this.isDentist = !this.isDentist;
+  }
+  isWorkerUser(){
+    this.hasUser = ! this.hasUser;
   }
 
 

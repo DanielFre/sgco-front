@@ -46,7 +46,64 @@
                   </mat-form-field>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" (click)="isWorkerUser()" value="{{isUser}}">
+                      Contém Usuário
+                      <span class="form-check-sign">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" (click)="isWorkerDentist()" value="{{isDentist}}">
+                      É Dentista
+                      <span class="form-check-sign">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </form>
+          </div>
+          <h4 class="card-body card-title" *ngIf="isDentist">Dados do Dentista</h4>
+          <div class="card-body" *ngIf="isDentist">
+            <div class="row">
+              <div class="col-md-4">
+                <button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1"
+                  (colorPickerOpen)="onEventLog('colorPickerOpen', $event)"
+                  (colorPickerClose)="onEventLog('colorPickerClose', $event)"
+                  (cpInputChange)="onEventLog('cpInputChange', $event)"
+                  (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
+                  (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Cadastro regional de medicina" type="text">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <h4 class="card-body card-title" *ngIf="hasUser">Dados do Usuário</h4>
+          <div class="card-body" *ngIf="hasUser">
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Usuário" type="text">
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Senha" type="password">
+                </mat-form-field>
+              </div>
+            </div>
           </div>
           <h4 class="card-body card-title">Endereço</h4>
           <div class="card-body">
@@ -59,12 +116,12 @@
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Número" type="text">
+                    <input matInput placeholder="Bairro" type="text">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Bairro" type="text">
+                    <input matInput placeholder="Número" type="text">
                   </mat-form-field>
                 </div>
               </div>
@@ -88,43 +145,43 @@
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="E-mail" type="text">
+                    <input matInput placeholder="Estado" type="text">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Telefone" type="text">
+                    <input matInput placeholder="País" type="text">
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </div>
+          <h4 class="card-body card-title">Contato</h4>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="E-mail" type="email">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" (click)="isWorkerDentist()" value="{{isDentist}}">
-                      Contém Usuário
-                      <span class="form-check-sign">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="row" *ngIf="isDentist">
-                <div class="col-md-5">
-                  <input [style.background]="color1" [(colorPicker)]="color1"
-                    (colorPickerOpen)="onEventLog('colorPickerOpen', $event)"
-                    (colorPickerClose)="onEventLog('colorPickerClose', $event)"
-                    (cpInputChange)="onEventLog('cpInputChange', $event)"
-                    (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
-                    (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)" />
-                </div>
-                <div class="col-md-7">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Cadastro regional de medicina" type="text">
+                    <input matInput placeholder="Telefone" type="tel">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Telefone 2" type="tel">
                   </mat-form-field>
                 </div>
               </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
-              <div class="clearfix"></div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button mat-raised-button type="submit" class="btn btn-danger pull-right">Pronto</button>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
