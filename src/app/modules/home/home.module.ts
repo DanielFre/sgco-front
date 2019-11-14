@@ -35,6 +35,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatButtonModule, MatInputModule, MatRippleModule, MatFormFieldModule, MatTooltipModule, MatSelectModule } from '@angular/material';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { HomeRoutingModule } from './home.routing';
 
@@ -86,6 +87,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     PortalModule,
     ScrollingModule,
     MatRippleModule,
+    SweetAlert2Module.forRoot(),
 
     HomeRoutingModule
   ],

@@ -86,7 +86,6 @@ import { LoginComponent } from './login/login.component';
     PortalModule,
     ScrollingModule,
     MatRippleModule,
-
     SweetAlert2Module.forRoot(),
 
     AuthenticationRoutingModule

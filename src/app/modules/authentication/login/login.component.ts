@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { CredenciaisDTO } from 'app/core/models/credenciais.dto';
 import { AuthService } from 'app/core/services/auth.service';
+import { SweetAlertOptions } from 'sweetalert2';
 
 @Component({
 	selector: 'app-login',
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
 							let options = {
 								title: "Erro " + error.status + ": " + error.error,
 								text: error.message,
-							}
+							} as SweetAlertOptions;
 
 							this.dialog.update(options);
 							this.dialog.fire();
