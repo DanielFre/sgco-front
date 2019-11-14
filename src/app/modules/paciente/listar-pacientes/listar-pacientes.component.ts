@@ -5,12 +5,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
+
 export interface UserData {
   id: string;
   nome: string;
   cpf: string;
   situacao: boolean;
-
 }
 
 /** Constants used to fill up our data base. */
@@ -27,19 +27,12 @@ const NOMES: string[] = [
 /**
  * @title Data table with sorting, pagination, and filtering.
  */
-
-
-
 @Component({
   selector: 'app-paciente',
   templateUrl: './listar-pacientes.component.html',
   styleUrls: ['./listar-pacientes.component.scss']
 })
-
-
 export class ListarPacientesComponent implements OnInit {
-
-
 
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'situacao', 'actions'];
   // displayedColumns: string[] = ['id', 'name', 'progress', 'actions'];
@@ -48,24 +41,17 @@ export class ListarPacientesComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-
-
   constructor() {
-
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
-
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -74,6 +60,9 @@ export class ListarPacientesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  
+
 }
 
 /** Builds and returns a new User. */

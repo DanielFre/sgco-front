@@ -54,6 +54,7 @@ export class ListarFuncionariosComponent implements OnInit {
   }
   deleteUser(){
     
+    
   }
 }
 

@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-md-12">
           <div class="margem">
-              <button (click)="openConfirmationDialog()" class="btn btn-success"   routerLink="../listar">
+              <button class="btn btn-success" [swal]="confirm"  >
                 <i class="material-icons"> arrow_back </i>
               </button>
               
-              <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button>
+              <!-- <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button> -->
 
             </div>
         <div class="card">
@@ -137,40 +137,40 @@
       </div>
     </div>
   </div>
+
+  <swal 
+    #confirm 
+    title="Delete?" 
+    text="Deseja voltar sem salvar as alterações?" 
+    type="question"
+    [showCancelButton]="true" 
+    [focusCancel]="true" 
+    (confirm)="cancelCreatePaciente()">
+  </swal>
+
+<!-- modelo de teste abaixo, ou seja, ñ esta sendo usado -->
+<!-- swal({
+  title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  cancelButtonColor: "#DD6B55",
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel please!",
+  closeOnConfirm: false,
+  closeOnCancel: false
+}, function (isConfirm) {
+  if (isConfirm) {
+      swal("Deleted!", "Your imaginary file has been deleted.", "success");
+  } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+  }
+}); -->
+
+
+
+
+
 </div>
-<!-- <div class="row">
-      <div class="col-md-5">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Company (disabled)" disabled>
-        </mat-form-field>
-      </div>
-      <div class="col-md-3">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
-        </mat-form-field>
-      </div>
-      <div class="col-md-4">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email address" type="email">
-        </mat-form-field>
-      </div>
-    </div> -->
-<!-- <div class="col-md-4">
-        <div class="color-picker">
-          <mat-button-toggle-group #group="matButtonToggleGroup">
-            <mat-button-toggle class="circle" style="background: #230455" value="left"
-              aria-label="Text align left">
-            </mat-button-toggle>
-            <mat-button-toggle class="circle" style="background: #630455" value="center"
-              aria-label="Text align center">
-            </mat-button-toggle>
-            <mat-button-toggle class="circle" style="background: #A02525" value="right"
-              aria-label="Text align right">
-            </mat-button-toggle>
-            <mat-button-toggle class="circle" style="background: #B30455" value="justify"
-              aria-label="Text align justify">
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-          <div class="example-selected-value">Selected value: {{group.value}}</div>
-        </div>
-      </div> -->
+
