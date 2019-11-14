@@ -35,6 +35,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatButtonModule, MatInputModule, MatRippleModule, MatFormFieldModule, MatTooltipModule, MatSelectModule } from '@angular/material';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AuthenticationRoutingModule } from './authentication.routing';
 
@@ -85,6 +86,8 @@ import { LoginComponent } from './login/login.component';
     PortalModule,
     ScrollingModule,
     MatRippleModule,
+
+    SweetAlert2Module.forRoot(),
 
     AuthenticationRoutingModule
   ],

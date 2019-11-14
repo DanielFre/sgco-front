@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProcedimentoService } from 'app/core/services/domain/procedimento.service';
 import { ProcedimentoDTO } from 'app/core/models/procedimento.dto';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-listar-procedimentos',
@@ -11,7 +12,10 @@ export class ListarProcedimentosComponent implements OnInit {
 
 	items: ProcedimentoDTO[];
 
-	constructor(private procedimentoService: ProcedimentoService) { }
+	constructor(
+		private router: Router,
+		private procedimentoService: ProcedimentoService
+	) { }
 
 	ngOnInit() {
 		this.procedimentoService.findAll()
@@ -19,7 +23,11 @@ export class ListarProcedimentosComponent implements OnInit {
 				response => {
 					this.items = response;
 				},
-				error => { }
+				error => {
+					if (error.status == 403) {
+						this.router.navigateByUrl('/');
+					}
+				}
 			);
 	}
 

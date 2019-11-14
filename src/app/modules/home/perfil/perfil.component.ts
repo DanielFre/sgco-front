@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'app/core/services/storage.service';
 import { UsuarioPerfilDTO } from 'app/core/models/usuario-perfil.dto';
 import { UsuarioService } from 'app/core/services/domain/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-perfil',
@@ -13,6 +14,7 @@ export class PerfilComponent implements OnInit {
 	usuario: UsuarioPerfilDTO;
 
 	constructor(
+		private router: Router,
 		public storage: StorageService,
 		public usuarioService: UsuarioService
 	) { }
@@ -34,8 +36,14 @@ export class PerfilComponent implements OnInit {
 							this.usuario.imagem = "./assets/img/faces/" + this.usuario.imagem + ".jpg";
 						}
 					},
-					error => { }
+					error => {
+						if (error.status == 403) {
+							this.router.navigateByUrl('/');
+						}
+					}
 				);
+		} else {
+			this.router.navigateByUrl('/');
 		}
 	}
 
