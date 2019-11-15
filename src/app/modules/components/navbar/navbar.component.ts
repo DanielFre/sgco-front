@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ɵConsole } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/core/services/auth.service';
 
 declare interface Navegacao {
     path: string;
@@ -66,7 +67,12 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(location: Location, private element: ElementRef, private router: Router) {
+    constructor(
+        location: Location,
+        private element: ElementRef,
+        private router: Router,
+        public auth: AuthService
+    ) {
         this.location = location;
         this.sidebarVisible = false;
     }
@@ -194,5 +200,10 @@ export class NavbarComponent implements OnInit {
         });
 
         return navegacao;
+    }
+
+    logout() {
+        this.auth.logout();
+		this.router.navigateByUrl('/');
     }
 }

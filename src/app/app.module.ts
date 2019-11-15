@@ -18,6 +18,9 @@ import { StorageService } from './core/services/storage.service';
 import { AuthService } from './core/services/auth.service';
 import { UsuarioService } from './core/services/domain/usuario.service';
 import { ProcedimentoService } from './core/services/domain/procedimento.service';
+import { PaisService } from './core/services/domain/pais.service';
+import { EstadoService } from './core/services/domain/estado.service';
+import { CidadeService } from './core/services/domain/cidade.service';
 
 @NgModule({
 	imports: [
@@ -41,7 +44,10 @@ import { ProcedimentoService } from './core/services/domain/procedimento.service
 		StorageService,
 		AuthService,
 		UsuarioService,
-		ProcedimentoService
+		ProcedimentoService,
+		PaisService,
+		EstadoService,
+		CidadeService
 	],
 	bootstrap: [AppComponent]
 })

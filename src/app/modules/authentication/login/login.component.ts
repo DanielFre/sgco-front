@@ -23,6 +23,14 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.auth.refreshToken()
+			.subscribe(
+				response => {
+					this.auth.successfulLogin(response.headers.get('Authorization'));
+					this.router.navigateByUrl('/home');
+				},
+				error => { }
+			);
 	}
 
 	@ViewChild('dialog', null)

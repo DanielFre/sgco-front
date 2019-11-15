@@ -1,193 +1,179 @@
 <div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <h4 class="card-body card-title">Dados Pessoais</h4>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Nome" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Sobrenome" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Data de Nascimento">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="RG" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="CPF" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field>
-                    <mat-label>Sexo</mat-label>
-                    <select matNativeControl required>
-                      <option value="Masculino">Masculino</option>
-                      <option value="Feminino">Feminino</option>
-                    </select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" (click)="isWorkerUser()" value="{{isUser}}">
-                      Contém Usuário
-                      <span class="form-check-sign">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" (click)="isWorkerDentist()" value="{{isDentist}}">
-                      É Dentista
-                      <span class="form-check-sign">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <h4 class="card-body card-title" *ngIf="isDentist">Dados do Dentista</h4>
-          <div class="card-body" *ngIf="isDentist">
-            <div class="row">
-              <div class="col-md-4">
-                <button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1"
-                  (colorPickerOpen)="onEventLog('colorPickerOpen', $event)"
-                  (colorPickerClose)="onEventLog('colorPickerClose', $event)"
-                  (cpInputChange)="onEventLog('cpInputChange', $event)"
-                  (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
-                  (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Cadastro regional de medicina" type="text">
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-          <h4 class="card-body card-title" *ngIf="hasUser">Dados do Usuário</h4>
-          <div class="card-body" *ngIf="hasUser">
-            <div class="row">
-              <div class="col-md-4">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Usuário" type="text">
-                </mat-form-field>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Senha" type="password">
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-          <h4 class="card-body card-title">Endereço</h4>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Logradouro" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Bairro" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Número" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="CEP" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Complemento" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Cidade" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Estado" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="País" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-            </form>
-          </div>
-          <h4 class="card-body card-title">Contato</h4>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="E-mail" type="email">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Telefone" type="tel">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Telefone 2" type="tel">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <button mat-raised-button type="submit" class="btn btn-danger pull-right">Pronto</button>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<h4 class="card-body card-title">Dados Pessoais</h4>
+					<div class="card-body">
+						<form [formGroup]="formGroup" (ngSubmit)="cadastrar(); $event.preventDefault()">
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input formControlName="nome" matInput placeholder="Nome" type="text">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field>
+										<input formControlName="nascimento" matInput [matDatepicker]="picker" placeholder="Data de Nascimento">
+										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+										<mat-datepicker #picker></mat-datepicker>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input formControlName="rg" matInput placeholder="RG" type="text">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input formControlName="cpf" matInput placeholder="CPF" type="text">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field>
+										<mat-label>Sexo</mat-label>
+										<select formControlName="sexo" matNativeControl required>
+											<option value="M">Masculino</option>
+											<option value="F">Feminino</option>
+										</select>
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-check">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" (click)="isWorkerUser()" value="{{isUser}}">
+											Contém Usuário
+											<span class="form-check-sign">
+												<span class="check"></span>
+											</span>
+										</label>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-check">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" (click)="isWorkerDentist()" value="{{isDentist}}">
+											É Dentista
+											<span class="form-check-sign">
+												<span class="check"></span>
+											</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<h4 class="card-body card-title" *ngIf="isDentist">Dados do Dentista</h4>
+							<div class="card-body" *ngIf="isDentist">
+								<div class="row">
+									<div class="col-md-4">
+										<button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEventLog('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="crmCro" matInput placeholder="Cadastro regional de medicina" type="text">
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+							<h4 class="card-body card-title" *ngIf="hasUser">Dados do Usuário</h4>
+							<div class="card-body" *ngIf="hasUser">
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="senha" matInput placeholder="Senha" type="password">
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+							<h4 class="card-body card-title">Endereço</h4>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="logradouro" matInput placeholder="Logradouro" type="text">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="bairro" matInput placeholder="Bairro" type="text">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="numero" matInput placeholder="Número" type="text">
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="cep" matInput placeholder="CEP" type="text">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="complemento" matInput placeholder="Complemento" type="text">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-label>Pais</mat-label>
+										<select formControlName="idPais" (change)="updateEstados()" matNativeControl required>
+											<option *ngFor="let pais of paises; first as f" [value]="pais.id" [selected]="f">{{pais.nome}}</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<mat-label>Estado</mat-label>
+										<select formControlName="idEstado" (change)="updateCidades()" matNativeControl required>
+											<option *ngFor="let estado of estados;" [value]="estado.id">{{estado.nome}}</option>
+										</select>
+									</div>
+									<div class="col-md-4">
+										<mat-label>Cidade</mat-label>
+										<select formControlName="idCidade" matNativeControl required>
+											<option *ngFor="let cidade of cidades;" [value]="cidade.id">{{cidade.nome}}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<h4 class="card-body card-title">Contato</h4>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="email" matInput placeholder="E-mail" type="email">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="telefone1" matInput placeholder="Telefone" type="tel">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="telefone2" matInput placeholder="Telefone 2" type="tel">
+										</mat-form-field>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<button mat-raised-button type="submit" class="btn btn-danger pull-right">Pronto</button>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- <div class="col-md-4">
