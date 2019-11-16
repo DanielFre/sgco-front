@@ -21,6 +21,7 @@ import { ProcedimentoService } from './core/services/domain/procedimento.service
 import { PaisService } from './core/services/domain/pais.service';
 import { EstadoService } from './core/services/domain/estado.service';
 import { CidadeService } from './core/services/domain/cidade.service';
+import { FuncionarioService } from './core/services/domain/funcionario.service';
 
 @NgModule({
 	imports: [
@@ -47,7 +48,8 @@ import { CidadeService } from './core/services/domain/cidade.service';
 		ProcedimentoService,
 		PaisService,
 		EstadoService,
-		CidadeService
+		CidadeService,
+		FuncionarioService
 	],
 	bootstrap: [AppComponent]
 })

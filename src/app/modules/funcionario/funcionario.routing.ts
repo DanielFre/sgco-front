@@ -5,13 +5,13 @@ import { ListarFuncionariosComponent } from './listar-funcionarios/listar-funcio
 import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'listar', pathMatch: 'full' },
-    { path: 'listar', component: ListarFuncionariosComponent },
-    { path: 'cadastrar', component: CriarFuncionarioComponent }
+	{ path: '', redirectTo: 'listar', pathMatch: 'full' },
+	{ path: 'listar', component: ListarFuncionariosComponent },
+	{ path: 'cadastrar', component: CriarFuncionarioComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule]
 })
 export class FuncionarioRoutingModule { }

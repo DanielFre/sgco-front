@@ -3,32 +3,33 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
-					<h4 class="card-body card-title">Dados Pessoais</h4>
-					<div class="card-body">
+					<h4 class="card-body card-title pb-0">Dados Pessoais</h4>
+					<div class="card-body pt-0">
 						<form [formGroup]="formGroup" (ngSubmit)="cadastrar(); $event.preventDefault()">
 							<div class="row">
 								<div class="col-md-4">
 									<mat-form-field class="example-full-width">
-										<input formControlName="nome" matInput placeholder="Nome" type="text">
+										<input formControlName="nome" matInput placeholder="Nome" type="text" required>
 									</mat-form-field>
 								</div>
 								<div class="col-md-4">
 									<mat-form-field>
-										<input formControlName="nascimento" matInput [matDatepicker]="picker" placeholder="Data de Nascimento">
+										<input formControlName="nascimento" matInput [matDatepicker]="picker" placeholder="Data de Nascimento" required>
 										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 										<mat-datepicker #picker></mat-datepicker>
 									</mat-form-field>
 								</div>
 							</div>
+
 							<div class="row">
 								<div class="col-md-4">
 									<mat-form-field class="example-full-width">
-										<input formControlName="rg" matInput placeholder="RG" type="text">
+										<input formControlName="rg" matInput placeholder="RG" type="text" required>
 									</mat-form-field>
 								</div>
 								<div class="col-md-4">
 									<mat-form-field class="example-full-width">
-										<input formControlName="cpf" matInput placeholder="CPF" type="text">
+										<input formControlName="cpf" matInput placeholder="CPF" type="text" required>
 									</mat-form-field>
 								</div>
 								<div class="col-md-4">
@@ -41,77 +42,50 @@
 									</mat-form-field>
 								</div>
 							</div>
+
 							<div class="row">
 								<div class="col-md-4">
-									<div class="form-check">
-										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox" (click)="isWorkerUser()" value="{{isUser}}">
-											Contém Usuário
-											<span class="form-check-sign">
-												<span class="check"></span>
-											</span>
-										</label>
-									</div>
+									<mat-form-field>
+										<mat-label>Tipo de Funcionário</mat-label>
+										<select formControlName="tipo" (change)="updateTipo()" matNativeControl required>
+											<option *ngFor="let tipo of tiposFuncionarios;" [value]="tipo.cod">{{tipo.descricao}}</option>
+										</select>
+									</mat-form-field>
 								</div>
-								<div class="col-md-4">
-									<div class="form-check">
-										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox" (click)="isWorkerDentist()" value="{{isDentist}}">
-											É Dentista
-											<span class="form-check-sign">
-												<span class="check"></span>
-											</span>
-										</label>
-									</div>
+								<div class="col-md-4" *ngIf="isDentist">
+									<button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEventLog('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button>
+								</div>
+								<div class="col-md-4" *ngIf="isDentist">
+									<mat-form-field class="example-full-width">
+										<input formControlName="crmCro" matInput placeholder="CRM ou CRO" type="text">
+									</mat-form-field>
 								</div>
 							</div>
 
-							<h4 class="card-body card-title" *ngIf="isDentist">Dados do Dentista</h4>
-							<div class="card-body" *ngIf="isDentist">
+							<h4 class="card-body card-title pl-0 pb-0">Endereço</h4>
+							<div class="card-body pl-0 pr-0 pt-0 pb-0">
 								<div class="row">
 									<div class="col-md-4">
-										<button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEventLog('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button>
+										<mat-form-field class="example-full-width">
+											<input formControlName="logradouro" matInput placeholder="Logradouro" type="text" required>
+										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="crmCro" matInput placeholder="Cadastro regional de medicina" type="text">
+											<input formControlName="bairro" matInput placeholder="Bairro" type="text" required>
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="numero" matInput placeholder="Número" type="text" required>
 										</mat-form-field>
 									</div>
 								</div>
-							</div>
-							<h4 class="card-body card-title" *ngIf="hasUser">Dados do Usuário</h4>
-							<div class="card-body" *ngIf="hasUser">
+
 								<div class="row">
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="senha" matInput placeholder="Senha" type="password">
-										</mat-form-field>
-									</div>
-								</div>
-							</div>
-							<h4 class="card-body card-title">Endereço</h4>
-							<div class="card-body">
-								<div class="row">
-									<div class="col-md-4">
-										<mat-form-field class="example-full-width">
-											<input formControlName="logradouro" matInput placeholder="Logradouro" type="text">
-										</mat-form-field>
-									</div>
-									<div class="col-md-4">
-										<mat-form-field class="example-full-width">
-											<input formControlName="bairro" matInput placeholder="Bairro" type="text">
-										</mat-form-field>
-									</div>
-									<div class="col-md-4">
-										<mat-form-field class="example-full-width">
-											<input formControlName="numero" matInput placeholder="Número" type="text">
-										</mat-form-field>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-4">
-										<mat-form-field class="example-full-width">
-											<input formControlName="cep" matInput placeholder="CEP" type="text">
+											<input formControlName="cep" matInput placeholder="CEP" type="text" required>
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
@@ -120,39 +94,46 @@
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
-										<mat-label>Pais</mat-label>
-										<select formControlName="idPais" (change)="updateEstados()" matNativeControl required>
-											<option *ngFor="let pais of paises; first as f" [value]="pais.id" [selected]="f">{{pais.nome}}</option>
-										</select>
+										<mat-form-field>
+											<mat-label>Pais</mat-label>
+											<select formControlName="idPais" (change)="updateEstados()" matNativeControl required>
+												<option *ngFor="let pais of paises; first as f" [value]="pais.id" [selected]="f">{{pais.nome}}</option>
+											</select>
+										</mat-form-field>
 									</div>
 								</div>
+
 								<div class="row">
 									<div class="col-md-4">
-										<mat-label>Estado</mat-label>
-										<select formControlName="idEstado" (change)="updateCidades()" matNativeControl required>
-											<option *ngFor="let estado of estados;" [value]="estado.id">{{estado.nome}}</option>
-										</select>
+										<mat-form-field>
+											<mat-label>Estado</mat-label>
+											<select formControlName="idEstado" (change)="updateCidades()" matNativeControl required>
+												<option *ngFor="let estado of estados;" [value]="estado.id">{{estado.nome}}</option>
+											</select>
+										</mat-form-field>
 									</div>
 									<div class="col-md-4">
-										<mat-label>Cidade</mat-label>
-										<select formControlName="idCidade" matNativeControl required>
-											<option *ngFor="let cidade of cidades;" [value]="cidade.id">{{cidade.nome}}</option>
-										</select>
+										<mat-form-field>
+											<mat-label>Cidade</mat-label>
+											<select formControlName="idCidade" matNativeControl required>
+												<option *ngFor="let cidade of cidades;" [value]="cidade.id">{{cidade.nome}}</option>
+											</select>
+										</mat-form-field>
 									</div>
 								</div>
 							</div>
 
-							<h4 class="card-body card-title">Contato</h4>
-							<div class="card-body">
+							<h4 class="card-body card-title pl-0 pb-0">Contato</h4>
+							<div class="card-body pl-0 pr-0 pt-0 pb-0">
 								<div class="row">
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="email" matInput placeholder="E-mail" type="email">
+											<input formControlName="email" matInput placeholder="E-mail" type="email" [value]="formGroup.value.email" required>
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="telefone1" matInput placeholder="Telefone" type="tel">
+											<input formControlName="telefone1" matInput placeholder="Telefone" type="tel" required>
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
@@ -161,11 +142,85 @@
 										</mat-form-field>
 									</div>
 								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-check">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" (click)="isWorkerUser()" value="{{isUser}}">
+											Adicionar Usuário
+											<span class="form-check-sign">
+												<span class="check"></span>
+											</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<h4 class="card-body card-title pl-0 pb-0" *ngIf="hasUser">Dados do Usuário</h4>
+							<div class="card-body pl-0 pr-0 pt-0 pb-0" *ngIf="hasUser">
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="email" matInput placeholder="Login" type="email" [value]="formGroup.value.email">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input formControlName="senha" matInput placeholder="Senha" type="password">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<div class="form-check">
+											<label class="form-check-label">
+												<input formControlName="ativo" class="form-check-input" type="checkbox">
+												Ativo
+												<span class="form-check-sign">
+													<span class="check"></span>
+												</span>
+											</label>
+										</div>
+									</div>
+								</div>
+
 								<div class="row">
 									<div class="col-md-12">
-										<button mat-raised-button type="submit" class="btn btn-danger pull-right">Pronto</button>
-										<div class="clearfix"></div>
+										<label class="image-upload-container btn btn-bwm">
+											<span>Select Image</span>
+											<input class="d-none" #imageInput formControlName="imagem" type="file" accept="image/*" (change)="processFile(imageInput)">
+										</label>
+
+										<div *ngIf="selectedFile" class="img-preview-container">
+											<div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}" [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+											</div>
+
+											<div *ngIf="selectedFile.pending" class="img-loading-overlay">
+												<div class="img-spinning-circle"></div>
+											</div>
+
+											<div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+											<div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+										</div>
 									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field>
+											<mat-label>Permissões</mat-label>
+											<mat-select formControlName="permissoes" matNativeControl multiple>
+												<mat-option *ngFor="let permissao of permissoes;" [value]="permissao.cod">{{permissao.descricao}}</mat-option>
+											</mat-select>
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<button mat-raised-button type="submit" class="btn btn-danger pull-right">Pronto</button>
+									<div class="clearfix"></div>
 								</div>
 							</div>
 						</form>

@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { UsuarioPerfilDTO } from "app/core/models/usuario-perfil.dto";
 import { API_CONFIG } from "config/api.config";
 import { StorageService } from "../storage.service";
+import { PermissaoDTO } from "app/core/models/permissao.dto";
 
 @Injectable()
 export class UsuarioService {
@@ -12,6 +13,24 @@ export class UsuarioService {
 
     public findPerfil(email: string): Observable<UsuarioPerfilDTO> {
         return this.http.get<UsuarioPerfilDTO>(`${API_CONFIG.baseUrl}/perfil/${email}`);
+    }
+
+    public findPermissoes(): Observable<PermissaoDTO[]> {
+        return this.http.get<PermissaoDTO[]>(`${API_CONFIG.baseUrl}/usuarios/permissoes/buscar`)
+    }
+
+    public uploadImage(image: File) {
+        const formData = new FormData();
+
+        formData.append('file', image);
+
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/usuarios/imagem/upload`,
+            formData,
+            {
+                observe: 'response'
+            }
+        );
     }
 
 }
