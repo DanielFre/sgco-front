@@ -15,5 +15,10 @@ export class CriarPacienteComponent implements OnInit {
   public cancelCreatePaciente() {
     this.router.navigateByUrl('/pacientes/listar');
   }
+  public CreatePaciente()  {
+    
+    this.router.navigateByUrl('/pacientes/listar');
+    
+  }
 
 }

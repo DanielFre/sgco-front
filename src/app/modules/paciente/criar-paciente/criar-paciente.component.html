@@ -3,11 +3,10 @@
     <div class="row">
       <div class="col-md-12">
           <div class="margem">
-              <button class="btn btn-success" [swal]="confirm"  >
+              <button class="btn btn-success" [swal]="cancelCreatePacient"  >
                 <i class="material-icons"> arrow_back </i>
               </button>
               
-              <!-- <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button> -->
 
             </div>
         <div class="card">
@@ -129,7 +128,8 @@
                   </div>
                 </div> -->
               </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right">Cadastrar Paciente</button>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right" 
+                   [swal]="CreatePacient " >Cadastrar Paciente</button>
               <div class="clearfix"></div>
             </form>
           </div>
@@ -139,15 +139,50 @@
   </div>
 
   <swal 
-    #confirm 
-    title="Delete?" 
-    text="Deseja voltar sem salvar as alterações?" 
+    #cancelCreatePacient 
+    title="Deseja voltar sem salvar as alterações?" 
     type="question"
+
     [showCancelButton]="true" 
+    confirmButtonText= "Sim"
+
     [focusCancel]="true" 
+    cancelButtonText= "Não"
+    cancelButtonColor= "#DD6B55"
+
     (confirm)="cancelCreatePaciente()">
   </swal>
 
+  <swal 
+    #CreatePacient 
+    title="Deseja confirmar o cadastro de um novo paciente?" 
+    type="question"
+
+    [showCancelButton]="true" 
+    confirmButtonText= "Sim"
+    [focusConfirm]="true" 
+
+    cancelButtonText= "Não"
+    cancelButtonColor= "#DD6B55"
+
+    (confirm)="CreatePaciente()"
+   
+    
+    >
+    
+
+    
+  </swal>
+
+  <swal
+    #sucesso
+    title= "Paciente gravado com sucesso!"
+    
+    type= "success"
+    confirmButtonText= "ok">
+  
+  </swal>
+  
 <!-- modelo de teste abaixo, ou seja, ñ esta sendo usado -->
 <!-- swal({
   title: "Are you sure?",
@@ -168,9 +203,8 @@
   }
 }); -->
 
+<!-- https://sweetalert.js.org/guides/ -->
 
-
-
+<!-- https://github.com/sweetalert2/ngx-sweetalert2 -->
 
 </div>
-
