@@ -3,6 +3,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Cadastrar novo funcionário</h4>
+						<p class="card-category">Preencha o formulário abaixo</p>
+					</div>
 					<h4 class="card-body card-title pb-0">Dados Pessoais</h4>
 					<div class="card-body pt-0">
 						<form [formGroup]="formGroup" (ngSubmit)="cadastrar(); $event.preventDefault()">
@@ -16,7 +20,7 @@
 									<mat-form-field>
 										<input formControlName="nascimento" matInput [matDatepicker]="picker" placeholder="Data de Nascimento" required>
 										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-										<mat-datepicker #picker></mat-datepicker>
+										<mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
 									</mat-form-field>
 								</div>
 							</div>
@@ -35,10 +39,10 @@
 								<div class="col-md-4">
 									<mat-form-field>
 										<mat-label>Sexo</mat-label>
-										<select formControlName="sexo" matNativeControl required>
-											<option value="M">Masculino</option>
-											<option value="F">Feminino</option>
-										</select>
+										<mat-select formControlName="sexo" matNativeControl required>
+											<mat-option value="M">Masculino</mat-option>
+											<mat-option value="F">Feminino</mat-option>
+										</mat-select>
 									</mat-form-field>
 								</div>
 							</div>
@@ -47,13 +51,16 @@
 								<div class="col-md-4">
 									<mat-form-field>
 										<mat-label>Tipo de Funcionário</mat-label>
-										<select formControlName="tipo" (change)="updateTipo()" matNativeControl required>
-											<option *ngFor="let tipo of tiposFuncionarios;" [value]="tipo.cod">{{tipo.descricao}}</option>
-										</select>
+										<mat-select formControlName="tipo" (selectionChange)="updateTipo()" matNativeControl required>
+											<mat-option *ngFor="let tipo of tiposFuncionarios;" [value]="tipo.cod">{{tipo.descricao}}</mat-option>
+										</mat-select>
 									</mat-form-field>
 								</div>
 								<div class="col-md-4" *ngIf="isDentist">
-									<button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEventLog('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button>
+									<mat-form-field class="example-full-width">
+										<input class="height-15" formControlName="corAgenda" matInput placeholder="Cor para Agenda" type="color">
+									</mat-form-field>
+									<!-- <button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEventLog('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button> -->
 								</div>
 								<div class="col-md-4" *ngIf="isDentist">
 									<mat-form-field class="example-full-width">
@@ -96,9 +103,9 @@
 									<div class="col-md-4">
 										<mat-form-field>
 											<mat-label>Pais</mat-label>
-											<select formControlName="idPais" (change)="updateEstados()" matNativeControl required>
-												<option *ngFor="let pais of paises; first as f" [value]="pais.id" [selected]="f">{{pais.nome}}</option>
-											</select>
+											<mat-select formControlName="idPais" (selectionChange)="updateEstados()" matNativeControl required>
+												<mat-option *ngFor="let pais of paises;" [value]="pais.id">{{pais.nome}}</mat-option>
+											</mat-select>
 										</mat-form-field>
 									</div>
 								</div>
@@ -107,17 +114,17 @@
 									<div class="col-md-4">
 										<mat-form-field>
 											<mat-label>Estado</mat-label>
-											<select formControlName="idEstado" (change)="updateCidades()" matNativeControl required>
-												<option *ngFor="let estado of estados;" [value]="estado.id">{{estado.nome}}</option>
-											</select>
+											<mat-select formControlName="idEstado" (selectionChange)="updateCidades()" matNativeControl required>
+												<mat-option *ngFor="let estado of estados;" [value]="estado.id">{{estado.nome}}</mat-option>
+											</mat-select>
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field>
 											<mat-label>Cidade</mat-label>
-											<select formControlName="idCidade" matNativeControl required>
-												<option *ngFor="let cidade of cidades;" [value]="cidade.id">{{cidade.nome}}</option>
-											</select>
+											<mat-select formControlName="idCidade" matNativeControl required>
+												<mat-option *ngFor="let cidade of cidades;" [value]="cidade.id">{{cidade.nome}}</mat-option>
+											</mat-select>
 										</mat-form-field>
 									</div>
 								</div>
@@ -166,12 +173,22 @@
 											<input formControlName="email" matInput placeholder="Login" type="email" [value]="formGroup.value.email">
 										</mat-form-field>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<mat-form-field class="example-full-width">
 											<input formControlName="senha" matInput placeholder="Senha" type="password">
 										</mat-form-field>
 									</div>
-									<div class="col-md-4">
+
+									<div class="col-md-3">
+										<mat-form-field>
+											<mat-label>Permissões</mat-label>
+											<mat-select formControlName="permissoes" matNativeControl multiple>
+												<mat-option *ngFor="let permissao of permissoes;" [value]="permissao.cod">{{permissao.descricao}}</mat-option>
+											</mat-select>
+										</mat-form-field>
+									</div>
+
+									<div class="col-md-2">
 										<div class="form-check">
 											<label class="form-check-label">
 												<input formControlName="ativo" class="form-check-input" type="checkbox">
@@ -186,9 +203,9 @@
 
 								<div class="row">
 									<div class="col-md-12">
-										<label class="image-upload-container btn btn-bwm">
-											<span>Select Image</span>
-											<input class="d-none" #imageInput formControlName="imagem" type="file" accept="image/*" (change)="processFile(imageInput)">
+										<label class="image-upload-container btn btn-primary">
+											<span>Selecione uma imagem de perfil</span>
+											<input class="d-none" #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
 										</label>
 
 										<div *ngIf="selectedFile" class="img-preview-container">
@@ -199,27 +216,15 @@
 												<div class="img-spinning-circle"></div>
 											</div>
 
-											<div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
-											<div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+											<div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Não foi possível selecionar a imgem!</div>
 										</div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-4">
-										<mat-form-field>
-											<mat-label>Permissões</mat-label>
-											<mat-select formControlName="permissoes" matNativeControl multiple>
-												<mat-option *ngFor="let permissao of permissoes;" [value]="permissao.cod">{{permissao.descricao}}</mat-option>
-											</mat-select>
-										</mat-form-field>
 									</div>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-12">
-									<button mat-raised-button type="submit" class="btn btn-danger pull-right">Pronto</button>
+									<button mat-raised-button type="submit" class="btn btn-primary pull-right" [disabled]="formGroup.invalid">Cadastrar</button>
 									<div class="clearfix"></div>
 								</div>
 							</div>

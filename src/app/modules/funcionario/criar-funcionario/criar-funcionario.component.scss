@@ -110,6 +110,11 @@ p.style-value {
   box-sizing: border-box;
 }
 
+.height-15 {
+  height: 15px;
+  cursor: pointer;
+}
+
 .d-none {
   display: none;
 }
@@ -125,8 +130,11 @@ p.style-value {
   .img-preview {
     background: center center no-repeat;
     background-size: contain;
-    height: 116px;
-    width: 116px;
+    height: 300px;
+    width: 300px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
 
     &-error {
       display: none;
@@ -172,20 +180,5 @@ p.style-value {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-.btn-bwm {
-  background-color: red;
-  border-color: red;
-  color: white;
-  padding: 15px 30px;
-  font-size: 20px;
-
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: red !important;
-    background-color: red !important;
   }
 }

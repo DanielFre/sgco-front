@@ -10,6 +10,12 @@ import { FuncionarioService } from 'app/core/services/domain/funcionario.service
 import { TipoFuncionarioDTO } from 'app/core/models/tipo-funcionario.dto';
 import { UsuarioService } from 'app/core/services/domain/usuario.service';
 import { PermissaoDTO } from 'app/core/models/permissao.dto';
+import { FuncionarioDTO } from 'app/core/models/funcionario.dto';
+import { EnderecoDTO } from 'app/core/models/endereco.dto';
+import { ContatoDTO } from 'app/core/models/contato.dto';
+import { UsuarioDTO } from 'app/core/models/usuario.dto';
+
+import * as moment from 'moment';
 
 class ImageSnippet {
 	pending: boolean = false;
@@ -27,6 +33,8 @@ export class CriarFuncionarioComponent implements OnInit {
 
 	isDentist: boolean;
 	hasUser: boolean;
+
+	startDate = new Date(1990, 0, 1);
 
 	selectedFile: ImageSnippet;
 
@@ -46,23 +54,24 @@ export class CriarFuncionarioComponent implements OnInit {
 		public estadoService: EstadoService,
 		public cidadeService: CidadeService,
 		public tipoFuncionarioService: FuncionarioService,
-		private usuarioService: UsuarioService
+		private usuarioService: UsuarioService,
+		private funcionarioService: FuncionarioService
 	) {
 		this.formGroup = this.formBuilder.group({
 			nome: ['Allana Lorena Eloá Carvalho', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
-			nascimento: ['30/05/1998', Validators.required],
+			nascimento: [null, Validators.required],
 			rg: ['16.470.174-6', [Validators.required]],
 			cpf: ['023.373.937-80', [Validators.required]],
 			sexo: ['F', [Validators.required]],
 			tipo: [null, [Validators.required]],
-			corAgenda: ['Red'],
+			corAgenda: ['#752020'],
 			crmCro: ['23154512'],
 
 			logradouro: ['Rua C', [Validators.required]],
 			bairro: ['Parque Aldeia', [Validators.required]],
 			numero: ['233', [Validators.required]],
 			cep: ['28060-534', [Validators.required]],
-			complemento: ['asdsa', [Validators.required]],
+			complemento: ['Teste', [Validators.required]],
 			idPais: [null, [Validators.required]],
 			idEstado: [null, [Validators.required]],
 			idCidade: [null, [Validators.required]],
@@ -112,10 +121,6 @@ export class CriarFuncionarioComponent implements OnInit {
 		this.hasUser = !this.hasUser;
 	}
 
-	cadastrar() {
-		console.log(this.formGroup.controls.permissoes.value);
-	}
-
 	updateTipo() {
 		let tipo = this.formGroup.value.tipo;
 
@@ -158,7 +163,9 @@ export class CriarFuncionarioComponent implements OnInit {
 			this.selectedFile.pending = true;
 			this.usuarioService.uploadImage(this.selectedFile.file)
 				.subscribe(response => {
-					this.onSuccess();
+					let body: any = response.body;
+
+					this.onSuccess(body.fileName);
 				},
 					error => {
 						this.onError();
@@ -169,16 +176,67 @@ export class CriarFuncionarioComponent implements OnInit {
 		reader.readAsDataURL(file);
 	}
 
-	private onSuccess() {
+	cadastrar() {
+		let aux = this.formGroup.value;
+
+		let endereco: EnderecoDTO = {
+			logradouro: aux.logradouro,
+			bairro: aux.bairro,
+			numero: aux.numero,
+			cep: aux.cep,
+			complemento: aux.complemento,
+			idCidade: aux.idCidade
+		};
+
+		let contato: ContatoDTO = {
+			email: aux.email,
+			telefone1: aux.telefone1,
+			telefone2: aux.telefone2
+		};
+
+		let usuario: UsuarioDTO = {
+			login: aux.email,
+			senha: aux.senha,
+			ativo: aux.ativo,
+			imagem: aux.imagem,
+			permissoes: aux.permissoes
+		};
+
+		let funcionario: FuncionarioDTO = {
+			nome: aux.nome,
+			cpf: aux.cpf,
+			rg: aux.rg,
+			sexo: aux.sexo,
+			ativo: aux.ativo,
+			nascimento: moment(aux.nascimento).format('YYYY-MM-DD'),
+			tipo: aux.tipo,
+			corAgenda: aux.corAgenda,
+			crmCro: aux.crmCro,
+			endereco: endereco,
+			contato: contato,
+			usuario: usuario
+		};
+
+		this.funcionarioService.insert(funcionario)
+			.subscribe(response => {
+				console.log("n pode c");
+			}, error => {
+				console.log(error);
+			});
+	}
+
+	private onSuccess(fileName: string) {
 		this.selectedFile.pending = false;
 		this.selectedFile.status = 'ok';
-		this.formGroup.controls.imagem.setValue(this.selectedFile.src);
+
+		this.formGroup.controls.imagem.setValue(fileName);
 	}
 
 	private onError() {
 		this.selectedFile.pending = false;
 		this.selectedFile.status = 'fail';
 		this.selectedFile.src = '';
+
 		this.formGroup.controls.imagem.setValue(null);
 	}
 

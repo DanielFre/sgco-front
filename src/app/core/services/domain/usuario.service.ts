@@ -28,7 +28,8 @@ export class UsuarioService {
             `${API_CONFIG.baseUrl}/usuarios/imagem/upload`,
             formData,
             {
-                observe: 'response'
+                observe: 'response',
+                responseType: 'json'             
             }
         );
     }
