@@ -29,9 +29,13 @@ export class UsuarioService {
             formData,
             {
                 observe: 'response',
-                responseType: 'json'             
+                responseType: 'json'
             }
         );
+    }
+
+    public downloadImage(fileName: string): Observable<Blob> {
+        return this.http.get(`${API_CONFIG.baseUrl}/usuarios/imagem/download/${fileName}`, { responseType: 'blob' });
     }
 
 }

@@ -15,6 +15,19 @@ export class PerfilComponent implements OnInit {
 
 	usuario: UsuarioPerfilDTO;
 
+	imageToShow: any;
+
+	createImageFromBlob(image: Blob) {
+		let reader = new FileReader();
+		reader.addEventListener("load", () => {
+			this.imageToShow = reader.result;
+		}, false);
+
+		if (image) {
+			reader.readAsDataURL(image);
+		}
+	}
+
 	constructor(
 		private router: Router,
 		public storage: StorageService,
@@ -38,7 +51,13 @@ export class PerfilComponent implements OnInit {
 						}
 
 						if (this.usuario.imagem) {
-							this.usuario.imagem = "./assets/img/faces/" + this.usuario.imagem + ".jpg";
+
+							this.usuarioService.downloadImage(this.usuario.imagem)
+								.subscribe(response => {
+									this.createImageFromBlob(response);
+								},
+									error => { }
+								);
 						}
 					},
 					error => {
