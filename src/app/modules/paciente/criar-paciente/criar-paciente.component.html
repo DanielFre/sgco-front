@@ -3,17 +3,17 @@
     <div class="row">
       <div class="col-md-12">
           <div class="margem">
-              <button class="btn btn-success" [swal]="cancelCreatePacient"  >
+              <button class="btn btn-primary" [swal]="cancelCreatePacient"  >
                 <i class="material-icons"> arrow_back </i>
               </button>
               
 
             </div>
         <div class="card">
-          <!-- <div class="card-header card-header-danger">
-            <h4 class="card-title">Informações Paciente</h4>
-            <p class="card-category">...</p>
-          </div> -->
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Cadastro de Paciente</h4>
+            <p class="card-category">Preencha os campos abaixo para cadastrar um novo Paciente</p>
+          </div>
           <div class="card-body">
             <form>
               <div class="row">
@@ -128,8 +128,8 @@
                   </div>
                 </div> -->
               </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right" 
-                   [swal]="CreatePacient " >Cadastrar Paciente</button>
+              <button mat-raised-button type="submit" class="btn btn-primary pull-right" 
+                   [swal]="sucesso" >Cadastrar Paciente</button>
               <div class="clearfix"></div>
             </form>
           </div>
