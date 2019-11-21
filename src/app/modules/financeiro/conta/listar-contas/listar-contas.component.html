@@ -16,16 +16,10 @@
 
           <div class="col-md-2 situacao">
             <mat-form-field>
-              <mat-label>Valor em R$ </mat-label>
-            </mat-form-field>
-          </div>
-          
-          <div class="col-md-2 situacao">
-            <mat-form-field>
               <mat-label>Status</mat-label>
               <mat-select>
-                <mat-option value="option1">Ativo</mat-option>
-                <mat-option value="option2">Inativo</mat-option>
+                <mat-option value="option1">Ativa</mat-option>
+                <mat-option value="option2">Inativa</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -49,10 +43,16 @@
                 <td mat-cell *matCellDef="let row"> {{row.id}} </td>
               </ng-container>
 
-              <!-- Progress Column -->
-              <ng-container matColumnDef="cpf">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF </th>
-                <td mat-cell *matCellDef="let row"> {{row.cpf}} </td>
+              <!-- Numero conta Column -->
+              <!-- <ng-container matColumnDef="conta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Número da conta </th>
+                <td mat-cell *matCellDef="let row"> {{row.conta}} </td>
+              </ng-container> -->
+
+               <!-- tipo de conta Column -->
+               <ng-container matColumnDef="conta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Conta </th>
+                <td mat-cell *matCellDef="let row"> {{row.conta}} </td>
               </ng-container>
 
               <!-- Name Column -->
@@ -61,25 +61,31 @@
                 <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
               </ng-container>
 
-              <!-- Color Column -->
+              <!-- status Column -->
               <ng-container matColumnDef="situacao">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Situação </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                 <td mat-cell *matCellDef="let row"> {{row.situacao}} </td>
               </ng-container>
+
+               <!-- Banco Column -->
+               <!-- <ng-container matColumnDef="banco">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Banco </th>
+                <td mat-cell *matCellDef="let row"> {{row.banco}} </td>
+              </ng-container> -->
 
               <!-- Action Column -->
               <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>
                 <td mat-cell *matCellDef="let element" class="td-actions man">
-                  <button mat-button class="btn btn-info" type="button">
-                    <i class="material-icons">person</i>
-                  </button>
+                  <!-- <button mat-button class="btn btn-info" type="button">
+                    <i class="material-icons">edit</i>
+                  </button> -->
                   <button mat-button class="btn btn-success" type="button">
                     <i class="material-icons">edit</i>
                   </button>
                   <button mat-button class="btn btn-danger" type="button">
 
-                    <i class="material-icons">delete_forever</i>
+                    <i class="material-icons">close</i>
                   </button>
                 </td>
               </ng-container>
