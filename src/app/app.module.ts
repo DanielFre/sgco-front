@@ -24,6 +24,7 @@ import { PaisService } from './core/services/domain/pais.service';
 import { EstadoService } from './core/services/domain/estado.service';
 import { CidadeService } from './core/services/domain/cidade.service';
 import { FuncionarioService } from './core/services/domain/funcionario.service';
+import { AuthGuard } from './core/interceptors/auth.guard';
 
 @NgModule({
 	imports: [
@@ -55,7 +56,8 @@ import { FuncionarioService } from './core/services/domain/funcionario.service';
 		PaisService,
 		EstadoService,
 		CidadeService,
-		FuncionarioService
+		FuncionarioService,
+		AuthGuard
 	],
 	bootstrap: [AppComponent]
 })

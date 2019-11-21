@@ -40,48 +40,43 @@ export class PerfilComponent implements OnInit {
 	ngOnInit() {
 		let localUser = this.storage.getLocalUser();
 
-		if (localUser && localUser.email) {
-			this.usuarioService.findPerfil(localUser.email)
-				.subscribe(
-					response => {
-						this.usuario = response;
+		this.usuarioService.findPerfil(localUser.email)
+			.subscribe(
+				response => {
+					this.usuario = response;
 
-						if (this.usuario.crmCro) {
-							this.usuario.tipo += " - CRM/CRO " + this.usuario.crmCro;
-						}
-
-						if (this.usuario.imagem) {
-
-							this.usuarioService.downloadImage(this.usuario.imagem)
-								.subscribe(response => {
-									this.createImageFromBlob(response);
-								},
-									error => { }
-								);
-						}
-					},
-					error => {
-						switch (error.status) {
-							case 403:
-								this.dialog.fire();
-								break;
-							default:
-								let options = {
-									title: "Erro " + error.status + ": " + error.error,
-									text: error.message,
-									type: "error"
-								} as SweetAlertOptions;
-
-								this.dialog.update(options);
-								this.dialog.fire();
-						}
-
-						this.redirecionar();
+					if (this.usuario.crmCro) {
+						this.usuario.tipo += " - CRM/CRO " + this.usuario.crmCro;
 					}
-				);
-		} else {
-			this.router.navigateByUrl('/');
-		}
+
+					if (this.usuario.imagem) {
+						this.usuarioService.downloadImage(this.usuario.imagem)
+							.subscribe(response => {
+								this.createImageFromBlob(response);
+							},
+								error => { }
+							);
+					}
+				},
+				error => {
+					switch (error.status) {
+						case 403:
+							this.dialog.fire();
+							break;
+						default:
+							let options = {
+								title: "Erro " + error.status + ": " + error.error,
+								text: error.message,
+								type: "error"
+							} as SweetAlertOptions;
+
+							this.dialog.update(options);
+							this.dialog.fire();
+					}
+
+					this.redirecionar();
+				}
+			);
 	}
 
 	public redirecionar() {

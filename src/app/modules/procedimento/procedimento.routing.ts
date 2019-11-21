@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ListarProcedimentosComponent } from './listar-procedimentos/listar-procedimentos.component';
 import { CriarProcedimentoComponent } from './criar-procedimento/criar-procedimento.component';
+import { AuthGuard } from 'app/core/interceptors/auth.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: 'listar', pathMatch: 'full' },
-    { path: 'listar', component: ListarProcedimentosComponent },
-    { path: 'cadastrar', component: CriarProcedimentoComponent }
+    { path: 'listar', component: ListarProcedimentosComponent, canActivate: [AuthGuard] },
+    { path: 'cadastrar', component: CriarProcedimentoComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

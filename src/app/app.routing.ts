@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationComponent } from './modules/authentication/authentication.component';
 import { AdminLayoutComponent } from './modules/components/admin-layout/admin-layout.component';
 
-
 const routes: Routes = [
 	{ path: '', component: AuthenticationComponent, loadChildren: './modules/authentication/authentication.module#AuthenticationModule' },
 
