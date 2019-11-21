@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criar-conta',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarContaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  
 
   ngOnInit() {
   }
-
+  public cancelCreateConta() {
+    this.router.navigateByUrl('/financeiro/contas/listar');
+  }
+  public CreateConta()  {
+    
+    this.router.navigateByUrl('/financeiro/contas/listar');
+    
+  }
 }
