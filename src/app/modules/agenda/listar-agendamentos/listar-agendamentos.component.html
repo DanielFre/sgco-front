@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="card card-body">
-        <full-calendar defaultView="dayGridMonth" [header]="{
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-          }" [plugins]="calendarPlugins" [weekends]="calendarWeekends" [events]="calendarEvents"
-          (dateClick)="handleDateClick($event)" locale ="pt-br"></full-calendar>
+        <full-calendar *ngIf="options" #fullcalendar [editable]="true" [events]="eventsModel" [header]="options.header"
+          [customButtons]="options.customButtons"[buttonText]="options.buttonText"
+          (dateClick)="dateClick($event)" (eventDragStop)="eventDragStop($event)" [plugins]="options.plugins"
+          (eventClick)="eventClick($event)" [locale]="options.locale" [navLinks]="true"
+          [slotDuration]="options.slotDuration">
+        </full-calendar>
       </div>
     </div>
   </div>
