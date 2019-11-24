@@ -5,6 +5,7 @@ import { API_CONFIG } from 'config/api.config';
 import { LocalUser } from '../models/local-user';
 import { StorageService } from './storage.service';
 import { JwtHelper } from 'angular2-jwt';
+import { EmailDTO } from '../models/email.dto';
 
 @Injectable({
 	providedIn: 'root'
@@ -22,6 +23,17 @@ export class AuthService {
 		return this.http.post(`
 			${API_CONFIG.baseUrl}/login`,
 			creds,
+			{
+				observe: 'response',
+				responseType: 'text'
+			}
+		);
+	}
+
+	public forgot(cred: EmailDTO) {
+		return this.http.post(`
+			${API_CONFIG.baseUrl}/auth/forgot`,
+			cred,
 			{
 				observe: 'response',
 				responseType: 'text'

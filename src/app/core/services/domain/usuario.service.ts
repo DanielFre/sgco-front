@@ -5,6 +5,7 @@ import { UsuarioPerfilDTO } from "app/core/models/usuario-perfil.dto";
 import { API_CONFIG } from "config/api.config";
 import { StorageService } from "../storage.service";
 import { PermissaoDTO } from "app/core/models/permissao.dto";
+import { AlterarSenhaDTO } from "app/core/models/alterar-senha.dto";
 
 @Injectable()
 export class UsuarioService {
@@ -17,6 +18,17 @@ export class UsuarioService {
 
     public findPermissoes(): Observable<PermissaoDTO[]> {
         return this.http.get<PermissaoDTO[]>(`${API_CONFIG.baseUrl}/usuarios/permissoes/buscar`)
+    }
+
+    public alterarSenha(alterarSenha: AlterarSenhaDTO) {
+        return this.http.post(`
+		${API_CONFIG.baseUrl}/usuarios/alterar_senha`,
+            alterarSenha,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
     }
 
     public uploadImage(image: File) {

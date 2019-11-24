@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-4">
-				<div class="card card-profile">
+				<div #cardProfile class="card card-profile">
 					<div class="card-avatar">
 						<a href="javascript:void(0)">
 							<img class="img" [src]="imageToShow || './assets/img/faces/user.png'"/>
@@ -14,7 +14,7 @@
 						<p class="card-description">{{usuario?.email}}</p>
 						<p class="card-description">CPF: {{usuario?.cpf}}</p>
 						<p class="card-description">Data de Nascimento: {{usuario?.nascimento}}</p>
-						<a href="javascript:void(0)" class="btn btn-primary btn-round">Alterar Senha</a>
+						<button (click)="openAlterarSenha()" class="btn btn-primary btn-round">Alterar Senha</button>
 					</div>
 				</div>
 			</div>

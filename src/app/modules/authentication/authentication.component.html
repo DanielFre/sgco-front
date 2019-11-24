@@ -1,8 +1,10 @@
 <div class="wrapper">
-    <div class="main-panel">
-        <div class="main-content">
-            <router-outlet></router-outlet>
+    <div class="container-fluid">
+        <div class="row align-self justify-content-center">
+            <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-4 center-block">
+                <router-outlet></router-outlet>
+                <app-auth-footer></app-auth-footer>
+            </div>
         </div>
-        <app-footer></app-footer>
     </div>
 </div>

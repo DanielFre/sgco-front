@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { AuthFooterComponent } from './auth-footer/auth-footer.component';
 
 @NgModule({
   imports: [
@@ -16,13 +17,15 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    AuthFooterComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    AuthFooterComponent
   ]
 })
 export class ComponentsModule { }

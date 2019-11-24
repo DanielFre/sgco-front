@@ -40,7 +40,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HomeRoutingModule } from './home.routing';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilComponent, AlterarSenhaModal } from './perfil/perfil.component';
 
 @NgModule({
   imports: [
@@ -93,7 +93,11 @@ import { PerfilComponent } from './perfil/perfil.component';
   ],
   declarations: [
     DashboardComponent,
-    PerfilComponent
+    PerfilComponent,
+    AlterarSenhaModal
+  ],
+  entryComponents: [
+    AlterarSenhaModal
   ]
 })
 export class HomeModule { }

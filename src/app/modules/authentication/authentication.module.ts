@@ -40,6 +40,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AuthenticationRoutingModule } from './authentication.routing';
 
 import { LoginComponent } from './login/login.component';
+import { ForgotComponent } from './forgot/forgot.component';
 
 @NgModule({
   imports: [
@@ -91,7 +92,8 @@ import { LoginComponent } from './login/login.component';
     AuthenticationRoutingModule
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    ForgotComponent
   ]
 })
 export class AuthenticationModule { }

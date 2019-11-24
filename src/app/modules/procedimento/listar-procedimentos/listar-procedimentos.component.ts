@@ -35,8 +35,8 @@ export class ListarProcedimentosComponent implements OnInit {
 							break;
 						default:
 							let options = {
-								title: "Erro " + error.status + ": " + error.error,
-								text: error.message,
+								title: "Erro " + error.status +  ((error.error) ? ": " + error.error : ""),
+								text: (error.message) ? error.message : error.msg,
 								type: "error"
 							} as SweetAlertOptions;
 
