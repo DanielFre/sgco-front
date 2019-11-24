@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Alterar Imagem</h1>
+<div mat-dialog-content>
+	<div class="row">
+		<div class="col-md-12">
+			<label class="image-upload-container btn btn-primary">
+				<span>Selecione uma imagem de perfil</span>
+				<input class="d-none" #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
+			</label>
+
+			<div *ngIf="selectedFile" class="img-preview-container">
+				<div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}" [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+				</div>
+
+				<div *ngIf="selectedFile.pending" class="img-loading-overlay">
+					<div class="img-spinning-circle"></div>
+				</div>
+
+				<div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Não foi possível selecionar a imgem!</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div mat-dialog-actions>
+	<button mat-raised-button (click)="alterarI()" class="btn btn-primary pull-right" [disabled]="!selectedFile || selectedFile.status != 'ok'">Alterar</button>
+</div>
+
+<swal #dialog title="" type="warning" (confirm)="redirecionar()" (close)="redirecionar()"></swal>

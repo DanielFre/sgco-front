@@ -23,7 +23,7 @@
 	</div>
 </div>
 <div mat-dialog-actions>
-	<button mat-raised-button (click)="alterar()" class="btn btn-primary pull-right" [disabled]="alterarSenha.nova.length == 0 || alterarSenha.confirmacao.length == 0 || alterarSenha.antiga.length == 0">Alterar</button>
+	<button mat-raised-button (click)="alterarS()" class="btn btn-primary pull-right" [disabled]="alterarSenha.nova.length == 0 || alterarSenha.confirmacao.length == 0 || alterarSenha.antiga.length == 0">Alterar</button>
 </div>
 
 <swal #dialog title="" type="warning" (confirm)="redirecionar()" (close)="redirecionar()"></swal>

@@ -7,6 +7,14 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { SweetAlertOptions } from 'sweetalert2';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { AlterarSenhaDTO } from 'app/core/models/alterar-senha.dto';
+import { AlterarImagemDTO } from 'app/core/models/alterar-imagem.dto';
+
+class ImageSnippet {
+	pending: boolean = false;
+	status: string = 'init';
+
+	constructor(public src: string, public file: File) { }
+}
 
 @Component({
 	selector: 'app-perfil',
@@ -16,19 +24,13 @@ import { AlterarSenhaDTO } from 'app/core/models/alterar-senha.dto';
 export class PerfilComponent implements OnInit {
 
 	usuario: UsuarioPerfilDTO;
-
 	imageToShow: any;
 
-	createImageFromBlob(image: Blob) {
-		let reader = new FileReader();
-		reader.addEventListener("load", () => {
-			this.imageToShow = reader.result;
-		}, false);
+	@ViewChild('dialog', null)
+	private dialog: SwalComponent;
 
-		if (image) {
-			reader.readAsDataURL(image);
-		}
-	}
+	@ViewChild('cardProfile', null)
+	private cardProfile: ElementRef;
 
 	constructor(
 		private router: Router,
@@ -36,12 +38,6 @@ export class PerfilComponent implements OnInit {
 		public usuarioService: UsuarioService,
 		public dialogModal: MatDialog
 	) { }
-
-	@ViewChild('dialog', null)
-	private dialog: SwalComponent;
-
-	@ViewChild('cardProfile', null)
-	private cardProfile: ElementRef;
 
 	ngOnInit() {
 		let localUser = this.storage.getLocalUser();
@@ -71,7 +67,7 @@ export class PerfilComponent implements OnInit {
 							break;
 						default:
 							let options = {
-								title: "Erro " + error.status +  ((error.error) ? ": " + error.error : ""),
+								title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
 								text: (error.message) ? error.message : error.msg,
 								type: "error"
 							} as SweetAlertOptions;
@@ -85,6 +81,17 @@ export class PerfilComponent implements OnInit {
 			);
 	}
 
+	createImageFromBlob(image: Blob) {
+		let reader = new FileReader();
+		reader.addEventListener("load", () => {
+			this.imageToShow = reader.result;
+		}, false);
+
+		if (image) {
+			reader.readAsDataURL(image);
+		}
+	}
+
 	public redirecionar() {
 		this.router.navigateByUrl('/home');
 	}
@@ -96,11 +103,17 @@ export class PerfilComponent implements OnInit {
 			width: sizeCard + 'px',
 			data: { email: this.usuario.email, nova: "", confirmacao: "", antiga: "" }
 		});
-
 	}
 
-}
+	openAlterarImagem(): void {
+		let sizeCard = this.cardProfile.nativeElement.offsetWidth;
 
+		const dialogRef = this.dialogModal.open(AlterarImagemModal, {
+			width: sizeCard + 'px',
+			data: { email: this.usuario.email, imagem: "" }
+		});
+	}
+}
 
 @Component({
 	selector: 'alterar-senha',
@@ -109,16 +122,16 @@ export class PerfilComponent implements OnInit {
 })
 export class AlterarSenhaModal {
 
+	@ViewChild('dialog', null)
+	private dialog: SwalComponent;
+
 	constructor(
 		public dialogRef: MatDialogRef<AlterarSenhaModal>,
 		@Inject(MAT_DIALOG_DATA) public alterarSenha: AlterarSenhaDTO,
 		public usuarioService: UsuarioService
 	) { }
 
-	@ViewChild('dialog', null)
-	private dialog: SwalComponent;
-
-	alterar(): void {
+	alterarS(): void {
 		if (this.alterarSenha.nova == this.alterarSenha.confirmacao) {
 			this.usuarioService.alterarSenha(this.alterarSenha)
 				.subscribe(response => {
@@ -133,7 +146,7 @@ export class AlterarSenhaModal {
 				},
 					error => {
 						let options = {
-							title: "Erro " + error.status +  ((error.error) ? ": " + error.error : ""),
+							title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
 							text: (error.message) ? error.message : error.msg,
 							type: "error"
 						} as SweetAlertOptions;
@@ -157,6 +170,92 @@ export class AlterarSenhaModal {
 	redirecionar() {
 		if (this.dialog.type == "success") {
 			this.dialogRef.close();
+		}
+	}
+}
+
+@Component({
+	selector: 'alterar-imagem',
+	templateUrl: './alterar-imagem.modal.html',
+	styleUrls: ['./perfil.component.scss']
+})
+export class AlterarImagemModal {
+
+	selectedFile: ImageSnippet;
+
+	@ViewChild('dialog', null)
+	private dialog: SwalComponent;
+
+	constructor(
+		public dialogRef: MatDialogRef<AlterarImagemModal>,
+		@Inject(MAT_DIALOG_DATA) public alterarImagem: AlterarImagemDTO,
+		public usuarioService: UsuarioService
+	) { }
+
+	processFile(imageInput: any) {
+		const file: File = imageInput.files[0];
+		const reader = new FileReader();
+
+		reader.addEventListener('load', (event: any) => {
+			this.selectedFile = new ImageSnippet(event.target.result, file);
+
+			this.selectedFile.pending = true;
+			this.usuarioService.uploadImage(this.selectedFile.file)
+				.subscribe(response => {
+					let body: any = response.body;
+
+					this.onSuccess(body.fileName);
+				},
+					error => {
+						this.onError();
+					}
+				);
+		});
+
+		reader.readAsDataURL(file);
+	}
+
+	private onSuccess(fileName: string) {
+		this.selectedFile.pending = false;
+		this.selectedFile.status = 'ok';
+		this.alterarImagem.imagem = fileName;
+	}
+
+	private onError() {
+		this.selectedFile.pending = false;
+		this.selectedFile.status = 'fail';
+		this.selectedFile.src = '';
+	}
+
+	alterarI(): void {
+		this.usuarioService.alterarImagem(this.alterarImagem)
+			.subscribe(response => {
+				let options = {
+					title: "Sucesso",
+					text: "Imagem alterada",
+					type: "success"
+				} as SweetAlertOptions;
+
+				this.dialog.update(options);
+				this.dialog.fire();
+			},
+				error => {
+					let options = {
+						title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
+						text: (error.message) ? error.message : error.msg,
+						type: "error"
+					} as SweetAlertOptions;
+
+					this.dialog.update(options);
+					this.dialog.fire();
+				}
+			);
+	}
+
+	redirecionar() {
+		if (this.dialog.type == "success") {
+			this.dialogRef.close();
+			window.location.reload();
 		}
 	}
 

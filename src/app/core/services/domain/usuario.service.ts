@@ -6,6 +6,7 @@ import { API_CONFIG } from "config/api.config";
 import { StorageService } from "../storage.service";
 import { PermissaoDTO } from "app/core/models/permissao.dto";
 import { AlterarSenhaDTO } from "app/core/models/alterar-senha.dto";
+import { AlterarImagemDTO } from "app/core/models/alterar-imagem.dto";
 
 @Injectable()
 export class UsuarioService {
@@ -24,6 +25,17 @@ export class UsuarioService {
         return this.http.post(`
 		${API_CONFIG.baseUrl}/usuarios/alterar_senha`,
             alterarSenha,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
+    public alterarImagem(alterarImagem: AlterarImagemDTO) {
+        return this.http.post(`
+		${API_CONFIG.baseUrl}/usuarios/alterar_imagem`,
+            alterarImagem,
             {
                 observe: 'response',
                 responseType: 'text'
