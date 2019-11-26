@@ -1,19 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface UserData {
-	id: string;
-	nome: string;
-	cpf: string;
-	situacao: boolean;
-}
-
-const NOMES: string[] = [
-	'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-	'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
+import { FuncionarioService } from 'app/core/services/domain/funcionario.service';
+import { FuncionarioGetDTO } from 'app/core/models/funcionario-get.dto';
 
 /**
  * @title Data table with sorting, pagination, and filtering.
@@ -25,48 +14,45 @@ const NOMES: string[] = [
 })
 export class ListarFuncionariosComponent implements OnInit {
 
+	nome: string;
+	ativo: boolean;
+
+
 	displayedColumns: string[] = ['id', 'nome', 'cpf', 'situacao', 'actions'];
-	dataSource: MatTableDataSource<UserData>;
+	public dataSource: MatTableDataSource<FuncionarioGetDTO>;
 
-	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-	@ViewChild(MatSort, { static: true }) sort: MatSort;
+	public pageSize = 1;
+	public currentPage = 0;
+	public totalSize = 0;
 
-	constructor() {
-		// Create 100 users
-		const users = Array.from({ length: 500 }, (_, k) => createNewUser(k + 1));
-
-		// Assign the data to the data source for the table to render
-		this.dataSource = new MatTableDataSource(users);
-	}
+	constructor(private funcionarioService: FuncionarioService) { }
 
 	ngOnInit() {
-		this.dataSource.paginator = this.paginator;
-		this.dataSource.sort = this.sort;
 	}
 
-	applyFilter(filterValue: string) {
-		this.dataSource.filter = filterValue.trim().toLowerCase();
+	public handlePage(e: PageEvent) {
+		this.currentPage = e.pageIndex;
+		this.pesquisar(false);
+	}
 
-		if (this.dataSource.paginator) {
-			this.dataSource.paginator.firstPage();
+	public pesquisar(limpar: boolean) {
+		if (limpar) {
+			this.limpar();
 		}
+
+		this.funcionarioService.findByFilter(this.nome, this.ativo, this.currentPage, this.pageSize, 'nome', 'ASC')
+			.subscribe(response => {
+				this.dataSource = new MatTableDataSource(response['content']);
+
+				this.totalSize = response['totalPages'];
+			},
+				error => { }
+			);
 	}
 
-	deleteUser() {
-
+	private limpar() {
+		this.currentPage = 0;
+		this.totalSize = 0;
 	}
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-	const nome = NOMES[Math.round(Math.random() * (NOMES.length - 1))] + ' ' +
-		NOMES[Math.round(Math.random() * (NOMES.length - 1))].charAt(0) + '.';
-
-	return {
-		id: id.toString(),
-		nome: nome,
-		cpf: (Math.round(Math.random() * 999).toString() + "." + Math.round(Math.random() * 999).toString()
-			+ "." + Math.round(Math.random() * 999).toString() + "-" + Math.round(Math.random() * 99).toString()),
-		situacao: true,
-	};
 }
