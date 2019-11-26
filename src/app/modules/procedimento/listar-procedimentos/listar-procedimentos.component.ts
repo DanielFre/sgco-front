@@ -15,22 +15,22 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ListarProcedimentosComponent implements OnInit {
 
-	items: ProcedimentoDTO[];
-
 	constructor(
 		private router: Router,
 		private procedimentoService: ProcedimentoService
 	) {
-		
-	 }
 
-	@ViewChild('dialog', null)
+	}
+	items: ProcedimentoDTO[];
+	dataSource = new MatTableDataSource<ProcedimentoDTO>();
+
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
-	private dialog: SwalComponent;
 
+	@ViewChild('dialog', null)
+	private dialog: SwalComponent;
 	displayedColumns: string[] = ['id', 'nome', 'valor', 'ativo', 'actions'];
-	dataSource: MatTableDataSource<ProcedimentoDTO>;
+
 
 	ngOnInit() {
 		this.procedimentoService.findAll()
@@ -57,13 +57,11 @@ export class ListarProcedimentosComponent implements OnInit {
 					this.redirecionar();
 				}
 			);
+		this.dataSource.paginator = this.paginator;
 	}
 
 	public redirecionar() {
 		this.router.navigateByUrl('/home');
-	}
-	public changeBoolean(){
-		
 	}
 
 }

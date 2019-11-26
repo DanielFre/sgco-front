@@ -1,3 +1,52 @@
-<p>
-  criar-procedimento works!
-</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Cadastrar novo procedimento</h4>
+            <p class="card-category">Preencha o formulário abaixo</p>
+          </div>
+          <h4 class="card-body card-title pb-0">Dados do Procedimento</h4>
+          <div class="card-body pt-0">
+            <form>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nome" type="text" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Preço" type="number" class="example-right-align">
+                    <span matPrefix>R$&nbsp;</span>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="{{ a }}">
+                      Ativar?
+                      <span class="form-check-sign">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button mat-raised-button type="submit" class="btn btn-primary pull-right"
+                    [disabled]="true">Cadastrar</button>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
