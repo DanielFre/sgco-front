@@ -54,7 +54,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table" mat-table [dataSource]="dataSource" matSort>
+                        <table class="table" mat-table [dataSource]="dataSource" matSort (matSortChange)="handleSort($event)">
 
                             <ng-container matColumnDef="id">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
@@ -72,7 +72,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="situacao">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Situação </th>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header="ativo"> Situação </th>
                                 <td mat-cell *matCellDef="let row"> {{row.ativo ? 'Ativo' : 'Inativo'}} </td>
                             </ng-container>
 

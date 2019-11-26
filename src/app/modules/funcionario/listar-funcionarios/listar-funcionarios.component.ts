@@ -17,13 +17,15 @@ export class ListarFuncionariosComponent implements OnInit {
 	nome: string;
 	ativo: boolean;
 
-
 	displayedColumns: string[] = ['id', 'nome', 'cpf', 'situacao', 'actions'];
 	public dataSource: MatTableDataSource<FuncionarioGetDTO>;
 
-	public pageSize = 1;
+	public pageSize = 24;
 	public currentPage = 0;
 	public totalSize = 0;
+
+	public orderBy = 'nome';
+	public direction = 'ASC';
 
 	constructor(private funcionarioService: FuncionarioService) { }
 
@@ -35,12 +37,18 @@ export class ListarFuncionariosComponent implements OnInit {
 		this.pesquisar(false);
 	}
 
+	public handleSort(e) {
+		this.orderBy = e.active;
+		this.direction = e.direction.toUpperCase();
+		this.pesquisar(false);
+	}
+
 	public pesquisar(limpar: boolean) {
 		if (limpar) {
 			this.limpar();
 		}
 
-		this.funcionarioService.findByFilter(this.nome, this.ativo, this.currentPage, this.pageSize, 'nome', 'ASC')
+		this.funcionarioService.findByFilter(this.nome, this.ativo, this.currentPage, this.pageSize, this.orderBy, this.direction)
 			.subscribe(response => {
 				this.dataSource = new MatTableDataSource(response['content']);
 
@@ -53,6 +61,8 @@ export class ListarFuncionariosComponent implements OnInit {
 	private limpar() {
 		this.currentPage = 0;
 		this.totalSize = 0;
+		this.orderBy = 'nome';
+		this.direction = 'ASC';
 	}
 
 }
