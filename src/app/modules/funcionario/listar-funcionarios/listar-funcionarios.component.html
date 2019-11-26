@@ -2,34 +2,54 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="margem">
-                    <button class="btn btn-primary" routerLink="../cadastrar">
-                        <i class="material-icons"> add </i>
-                    </button>
-                </div>
-                <div class="card search">
-                    <div class="col-md-5">
-                        <mat-form-field>
-                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Nome">
-                        </mat-form-field>
+                <div class="card mb-0">
+                    <div class="card-header card-header-primary">
+                        <div class="col-md-10">
+                            <h4 class="card-title">Listar funcionários</h4>
+                            <p class="card-category">Busca por nome e situação</p>
+                        </div>
+                        <div class="col-md-2">
+                            <button mat-raised-button class="btn btn-secondary pull-right" routerLink="../cadastrar">
+                                <i class="material-icons"> add </i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        <mat-form-field>
-                            <mat-label>Situação</mat-label>
-                            <mat-select>
-                                <mat-option value="option1">Ativo</mat-option>
-                                <mat-option value="option2">Inativo</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary">
-                            <i class="material-icons">search</i>
-                        </button>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mt-0 mb-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Nome">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <mat-form-field>
+                                                    <mat-label>Situação</mat-label>
+                                                    <mat-select matNativeControl>
+                                                        <mat-option value=true>Ativo</mat-option>
+                                                        <mat-option value=false>Inativo</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button mat-raised-button class="btn btn-primary pull-right">
+                                                    <i class="material-icons">search</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -88,7 +108,6 @@
             </div>
         </div>
     </div>
-    <swal #deleteSwal title="Delete?" text="This cannot be undone" icon="question"
-        [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteUser()">
-    </swal>
 </div>
+
+<swal #deleteSwal title="Delete?" text="This cannot be undone" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteUser()"> </swal>
