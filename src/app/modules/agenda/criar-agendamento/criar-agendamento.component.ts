@@ -56,6 +56,7 @@ export class CriarAgendamentoComponent implements OnInit {
       editable: true,
       navLinks: true,
       locale: 'pt-br',
+      selectable:true,
       defaultView: 'timeGridWeek',
       allDayText: 'Todo dia',
       slotLabelInterval: '00:15',
@@ -80,7 +81,6 @@ export class CriarAgendamentoComponent implements OnInit {
       },
       plugins: [dayGridPlugin, interactionPlugin, timeGrigPlugin, momentPlugin]
     };
-
   }
   eventClick(model) {
     console.log(model);

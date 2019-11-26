@@ -9,25 +9,26 @@
           </div>
           <h4 class="card-body card-title pb-0">Dados do Procedimento</h4>
           <div class="card-body pt-0">
-            <form>
+            <form [formGroup]="formGroup" (ngSubmit)="cadastrar(); $event.preventDefault()">
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Nome" type="text" required>
+                    <input formControlName="nome" matInput placeholder="Nome" type="text" required>
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Preço" type="number" class="example-right-align">
+                    <input formControlName="valor" matInput placeholder="Preço" type="number"
+                      class="example-right-align">
                     <span matPrefix>R$&nbsp;</span>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" value="{{ a }}">
+                      <input formControlName="ativo" class="form-check-input" type="checkbox" value="{{ a }}">
                       Ativar?
                       <span class="form-check-sign">
                         <span class="check"></span>
@@ -39,7 +40,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <button mat-raised-button type="submit" class="btn btn-primary pull-right"
-                    [disabled]="true">Cadastrar</button>
+                    [disabled]="formGroup.invalid">Cadastrar</button>
                   <div class="clearfix"></div>
                 </div>
               </div>

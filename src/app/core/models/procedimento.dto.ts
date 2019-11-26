@@ -1,5 +1,5 @@
 export interface ProcedimentoDTO {
-    id: string;
+    id?: string;
     nome: string;
     valor: number;
     ativo: boolean;

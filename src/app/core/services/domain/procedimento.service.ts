@@ -7,9 +7,20 @@ import { Observable } from "rxjs";
 @Injectable()
 export class ProcedimentoService {
 
-    constructor(public htpp: HttpClient) { }
+    constructor(public http: HttpClient) { }
 
     public findAll(): Observable<ProcedimentoDTO[]> {
-        return this.htpp.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos`)
+        return this.http.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos`)
+    }
+    
+    public insert(obj: ProcedimentoDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/procedimentos`,
+            obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
     }
 }
