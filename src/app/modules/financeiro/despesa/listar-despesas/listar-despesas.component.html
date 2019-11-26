@@ -1,3 +1,103 @@
-<p>
-  listar-despesas works!
-</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="margem">
+          <button class="btn btn-primary" routerLink="../cadastrar">
+            <i class="material-icons"> add </i>
+          </button>
+        </div>
+        <div class="card search ">
+          <div class="col-md-6 ">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Nome">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2 situacao">
+            <mat-form-field>
+              <mat-label>Status</mat-label>
+              <mat-select>
+                <mat-option value="option1">Ativa</mat-option>
+                <mat-option value="option2">Inativa</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2 margempesquisa">
+            <button class="btn btn-primary">
+              <i class="material-icons">search</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <table class="table" mat-table [dataSource]="dataSource" matSort>
+
+              <!-- ID Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+              </ng-container>
+
+              <!-- Numero conta Column -->
+              <!-- <ng-container matColumnDef="conta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Número da conta </th>
+                <td mat-cell *matCellDef="let row"> {{row.conta}} </td>
+              </ng-container> -->
+
+               <!-- tipo de conta Column -->
+               <ng-container matColumnDef="valor">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Despesa (R$)</th>
+                <td mat-cell *matCellDef="let row"> {{row.valor}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Destino da Despesa </th>
+                <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
+              </ng-container>
+
+              <!-- status Column -->
+              <ng-container matColumnDef="situacao">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let row"> {{row.situacao}} </td>
+              </ng-container>
+
+               <!-- Banco Column -->
+               <!-- <ng-container matColumnDef="banco">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Banco </th>
+                <td mat-cell *matCellDef="let row"> {{row.banco}} </td>
+              </ng-container> -->
+
+              <!-- Action Column -->
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Ações </th>
+                <td mat-cell *matCellDef="let element" class="td-actions man">
+                  <button mat-button class="btn btn-info" type="button">
+                    <i class="material-icons">info</i>
+                  </button>
+                  <button mat-button class="btn btn-success" type="button">
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button mat-button class="btn btn-danger" type="button">
+
+                    <i class="material-icons">close</i>
+                  </button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+              </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

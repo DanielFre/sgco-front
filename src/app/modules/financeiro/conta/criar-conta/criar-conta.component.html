@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
           <div class="margem">
-              <button class="btn btn-primary" [swal]="cancelCreatePacient"  >
+              <button class="btn btn-primary" [swal]="cancelCreateConta"  >
                 <i class="material-icons"> arrow_back </i>
               </button>
               
@@ -55,8 +55,8 @@
   </div>
 
   <swal 
-    #cancelCreatePacient 
-    title="Deseja voltar sem salvar as alterações?" 
+    #cancelCreateConta
+    title="Todas as alterações não salvas serão perdidas, Continuar?" 
     type="question"
 
     [showCancelButton]="true" 
@@ -66,10 +66,10 @@
     cancelButtonText= "Não"
     cancelButtonColor= "#DD6B55"
 
-    (confirm)="cancelCreateConta()">
+    (confirm)="CancelCreateConta()">
   </swal>
 
-  <swal 
+  <!-- <swal 
     #CreatePacient 
     title="Deseja confirmar o cadastro de uma nova Conta?" 
     type="question"
@@ -83,7 +83,7 @@
 
     (confirm)="CreateConta()">
   
-  </swal>
+  </swal> -->
 
   <swal
     #sucesso

@@ -140,7 +140,7 @@
 
   <swal 
     #cancelCreatePacient 
-    title="Deseja voltar sem salvar as alterações?" 
+    title="Todas as alterações não salvas serão perdidas, Continuar?" 
     type="question"
 
     [showCancelButton]="true" 
@@ -179,7 +179,9 @@
     title= "Paciente gravado com sucesso!"
     
     type= "success"
-    confirmButtonText= "ok">
+    confirmButtonText= "ok"
+    (confirm)="CreatePaciente()"
+    >
   
   </swal>
   

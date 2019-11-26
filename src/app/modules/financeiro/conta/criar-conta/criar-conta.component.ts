@@ -13,7 +13,7 @@ export class CriarContaComponent implements OnInit {
 
   ngOnInit() {
   }
-  public cancelCreateConta() {
+  public CancelCreateConta() {
     this.router.navigateByUrl('/financeiro/contas/listar');
   }
   public CreateConta()  {
