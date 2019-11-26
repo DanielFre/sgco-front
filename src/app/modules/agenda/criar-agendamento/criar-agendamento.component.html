@@ -15,7 +15,7 @@
                   <mat-form-field>
                     <!-- Mudar pais para dentistas -->
                     <mat-label>Dentista</mat-label>
-                    <mat-select formControlName="idPais"  matNativeControl required>
+                    <mat-select formControlName="nomeDentista" matNativeControl required>
                       <mat-option> mãe </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -39,8 +39,19 @@
                   </mat-form-field>
 
                   <mat-form-field>
-                    <input formControlName="nome" matInput placeholder="Procedimento" type="text" required>
+                    <mat-label>Procedimento</mat-label>
+                    <mat-select formControlName="procedimento" (selectionChange)="updateTipo()" matNativeControl
+                      required>
+                      <mat-option *ngFor="let item of items" [value]="item.id">{{item.nome}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
+
+                  <button mat-raised-button type="back" class="btn btn-primary pull-left">Voltar</button>
+                  <button mat-raised-button type="submit" class="btn btn-primary pull-left">Agendar</button>
+                  <div class="clearfix"></div>
+
+
                 </div>
                 <div class="col-md-8">
                   <full-calendar *ngIf="options" #fullcalendar [defaultView]="options.defaultView" [editable]="true"

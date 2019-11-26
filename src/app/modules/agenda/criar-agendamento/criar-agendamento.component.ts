@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 import Popover from '@fullcalendar/daygrid/Popover';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ProcedimentoDTO } from 'app/core/models/procedimento.dto';
+import { ProcedimentoService } from 'app/core/services/domain/procedimento.service';
 
 @Component({
   selector: 'app-criar-agendamento',
@@ -20,8 +22,9 @@ export class CriarAgendamentoComponent implements OnInit {
 
 
   formGroup: FormGroup;
+  items: ProcedimentoDTO[];
 
-  constructor(private router: Router, public formBuilder: FormBuilder, ) {
+  constructor(private router: Router, public formBuilder: FormBuilder, private procedimentoService: ProcedimentoService) {
 
   }
 
@@ -29,6 +32,13 @@ export class CriarAgendamentoComponent implements OnInit {
   eventsModel: any;
   @ViewChild('fullcalendar', { static: false }) fullcalendar: FullCalendarComponent;
   ngOnInit() {
+
+    this.procedimentoService.findAll()
+      .subscribe(
+        response => {
+          this.items = response;
+        },
+        error => { });
 
     this.options = {
       editable: true,
@@ -66,7 +76,7 @@ export class CriarAgendamentoComponent implements OnInit {
   eventDragStop(model) {
     console.log(model);
   }
-  dateClick(model) {
+  dateClick(arg) {
 
   }
   updateHeader() {

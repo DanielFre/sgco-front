@@ -4,6 +4,9 @@ import { ProcedimentoDTO } from 'app/core/models/procedimento.dto';
 import { Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { SweetAlertOptions } from 'sweetalert2';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
 	selector: 'app-listar-procedimentos',
@@ -17,10 +20,17 @@ export class ListarProcedimentosComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private procedimentoService: ProcedimentoService
-	) { }
+	) {
+		
+	 }
 
 	@ViewChild('dialog', null)
+	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+	@ViewChild(MatSort, { static: true }) sort: MatSort;
 	private dialog: SwalComponent;
+
+	displayedColumns: string[] = ['id', 'nome', 'valor', 'ativo', 'actions'];
+	dataSource: MatTableDataSource<ProcedimentoDTO>;
 
 	ngOnInit() {
 		this.procedimentoService.findAll()
@@ -35,7 +45,7 @@ export class ListarProcedimentosComponent implements OnInit {
 							break;
 						default:
 							let options = {
-								title: "Erro " + error.status +  ((error.error) ? ": " + error.error : ""),
+								title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
 								text: (error.message) ? error.message : error.msg,
 								type: "error"
 							} as SweetAlertOptions;
@@ -51,6 +61,9 @@ export class ListarProcedimentosComponent implements OnInit {
 
 	public redirecionar() {
 		this.router.navigateByUrl('/home');
+	}
+	public changeBoolean(){
+		
 	}
 
 }
