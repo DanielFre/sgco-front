@@ -9,14 +9,14 @@
           </div>
           <h4 class="card-body card-title pb-0">Alguma coisa pra usar espaço</h4>
           <div class="card-body pt-0">
-            <form [formGroup]="formGroup">
+            <form novalidate [formGroup]="formGroup">
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field>
                     <!-- Mudar pais para dentistas -->
                     <mat-label>Dentista</mat-label>
                     <mat-select formControlName="nomeDentista" matNativeControl required>
-                      <mat-option> mãe </mat-option>
+                      <mat-option> {{mae}} </mat-option>
                     </mat-select>
                   </mat-form-field>
 
@@ -25,13 +25,11 @@
                   </mat-form-field>
 
                   <mat-form-field>
-                    <input formControlName="dataHoraInicio" matInput placeholder="Início da consulta" type="text"
-                      disabled>
+                    <input formControlName="dataHoraInicio" matInput placeholder="Início da consulta" type="text">
                   </mat-form-field>
 
                   <mat-form-field>
-                    <input formControlName="dataHoraFim" matInput placeholder="Término da consulta" type="text"
-                      disabled>
+                    <input formControlName="dataHoraFim" matInput placeholder="Término da consulta" type="text">
                   </mat-form-field>
 
                   <mat-form-field>
@@ -40,9 +38,9 @@
 
                   <mat-form-field>
                     <mat-label>Procedimento</mat-label>
-                    <mat-select formControlName="procedimento" (selectionChange)="updateTipo()" matNativeControl
-                      required>
-                      <mat-option *ngFor="let item of items" [value]="item.id">{{item.nome}}
+                    <mat-select formControlName="procedimento" matNativeControl required>
+                      <mat-option *ngFor="let procedimento of procedimentos" [value]="procedimento.id">
+                        {{procedimento.nome}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

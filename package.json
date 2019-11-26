@@ -34,6 +34,7 @@
     "@fullcalendar/daygrid": "^4.3.0",
     "@fullcalendar/interaction": "^4.3.0",
     "@fullcalendar/list": "^4.3.0",
+    "@fullcalendar/moment": "^4.3.0",
     "@fullcalendar/timegrid": "^4.3.0",
     "@sweetalert2/ngx-sweetalert2": "^6.0.1",
     "ajv": "6.10.0",
