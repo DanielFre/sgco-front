@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PaisService } from 'app/core/services/domain/pais.service';
 import { EstadoService } from 'app/core/services/domain/estado.service';
@@ -16,6 +16,9 @@ import { ContatoDTO } from 'app/core/models/contato.dto';
 import { UsuarioDTO } from 'app/core/models/usuario.dto';
 
 import * as moment from 'moment';
+import { SweetAlertOptions } from 'sweetalert2';
+import { Router } from '@angular/router';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 class ImageSnippet {
 	pending: boolean = false;
@@ -31,6 +34,9 @@ class ImageSnippet {
 })
 export class CriarFuncionarioComponent implements OnInit {
 
+	@ViewChild('dialog', null)
+	private dialog: SwalComponent;
+	
 	isDentist: boolean;
 	hasUser: boolean;
 
@@ -55,7 +61,8 @@ export class CriarFuncionarioComponent implements OnInit {
 		public cidadeService: CidadeService,
 		public tipoFuncionarioService: FuncionarioService,
 		private usuarioService: UsuarioService,
-		private funcionarioService: FuncionarioService
+		private funcionarioService: FuncionarioService,
+		private router:Router
 	) {
 		this.formGroup = this.formBuilder.group({
 			nome: ['Allana Lorena Eloá Carvalho', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
@@ -219,9 +226,28 @@ export class CriarFuncionarioComponent implements OnInit {
 
 		this.funcionarioService.insert(funcionario)
 			.subscribe(response => {
-				console.log("n pode c");
+				let options = {
+					title: "Sucesso!",
+					text: funcionario.nome+" foi cadastrado com sucesso!",
+					type: 'success',
+				  } as SweetAlertOptions;
+		  
+				  this.dialog.update(options);
+				  this.router.navigateByUrl('funcionarios/listar');
+				  this.dialog.fire();
 			}, error => {
-				console.log(error);
+				switch (error.status) {
+					case 401:
+					  break;
+					default:
+					  let options = {
+						title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
+						text: (error.message) ? error.message : error.msg,
+					  } as SweetAlertOptions;
+		  
+					  this.dialog.update(options);
+					  this.dialog.fire();
+				  }
 			});
 	}
 
