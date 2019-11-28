@@ -16,9 +16,9 @@ import { ContatoDTO } from 'app/core/models/contato.dto';
 import { UsuarioDTO } from 'app/core/models/usuario.dto';
 
 import * as moment from 'moment';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { SweetAlertOptions } from 'sweetalert2';
 import { Router } from '@angular/router';
-import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 class ImageSnippet {
 	pending: boolean = false;
@@ -36,7 +36,7 @@ export class CriarFuncionarioComponent implements OnInit {
 
 	@ViewChild('dialog', null)
 	private dialog: SwalComponent;
-	
+
 	isDentist: boolean;
 	hasUser: boolean;
 
@@ -62,33 +62,33 @@ export class CriarFuncionarioComponent implements OnInit {
 		public tipoFuncionarioService: FuncionarioService,
 		private usuarioService: UsuarioService,
 		private funcionarioService: FuncionarioService,
-		private router:Router
+		private router: Router
 	) {
 		this.formGroup = this.formBuilder.group({
-			nome: ['Allana Lorena Eloá Carvalho', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
+			nome: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
 			nascimento: [null, Validators.required],
-			rg: ['16.470.174-6', [Validators.required]],
-			cpf: ['023.373.937-80', [Validators.required]],
-			sexo: ['F', [Validators.required]],
+			rg: [null, [Validators.required]],
+			cpf: [null, [Validators.required]],
+			sexo: ['M', [Validators.required]],
 			tipo: [null, [Validators.required]],
-			corAgenda: ['#752020'],
-			crmCro: ['23154512'],
+			corAgenda: [null],
+			crmCro: [null],
 
-			logradouro: ['Rua C', [Validators.required]],
-			bairro: ['Parque Aldeia', [Validators.required]],
-			numero: ['233', [Validators.required]],
-			cep: ['28060-534', [Validators.required]],
-			complemento: ['Teste', [Validators.required]],
+			logradouro: [null, [Validators.required]],
+			bairro: [null, [Validators.required]],
+			numero: [null, [Validators.required]],
+			cep: [null, [Validators.required]],
+			complemento: [null],
 			idPais: [null, [Validators.required]],
 			idEstado: [null, [Validators.required]],
 			idCidade: [null, [Validators.required]],
 
-			email: ['allanalorenaeloacarvalho@santosferreira.adv.br', [Validators.required]],
-			telefone1: ['(22) 98265-9517', [Validators.required]],
-			telefone2: ['(22) 98265-9517', [Validators.required]],
+			email: [null, [Validators.required]],
+			telefone1: [null, [Validators.required]],
+			telefone2: [null, [Validators.required]],
 
-			senha: ['123'],
-			ativo: [true],
+			senha: [null],
+			ativo: [null],
 			imagem: [null],
 			permissoes: [null]
 		});
@@ -183,6 +183,8 @@ export class CriarFuncionarioComponent implements OnInit {
 		reader.readAsDataURL(file);
 	}
 
+	private idNovoFuncionario: number;
+
 	cadastrar() {
 		let aux = this.formGroup.value;
 
@@ -201,13 +203,16 @@ export class CriarFuncionarioComponent implements OnInit {
 			telefone2: aux.telefone2
 		};
 
-		let usuario: UsuarioDTO = {
-			login: aux.email,
-			senha: aux.senha,
-			ativo: aux.ativo,
-			imagem: aux.imagem,
-			permissoes: aux.permissoes
-		};
+		let usuario: UsuarioDTO = null;
+		if (aux.senha) {
+			usuario = {
+				login: aux.email,
+				senha: aux.senha,
+				ativo: aux.ativo,
+				imagem: aux.imagem,
+				permissoes: aux.permissoes
+			};
+		}
 
 		let funcionario: FuncionarioDTO = {
 			nome: aux.nome,
@@ -227,27 +232,40 @@ export class CriarFuncionarioComponent implements OnInit {
 		this.funcionarioService.insert(funcionario)
 			.subscribe(response => {
 				let options = {
-					title: "Sucesso!",
-					text: funcionario.nome+" foi cadastrado com sucesso!",
-					type: 'success',
-				  } as SweetAlertOptions;
-		  
-				  this.dialog.update(options);
-				  this.router.navigateByUrl('funcionarios/listar');
-				  this.dialog.fire();
+					title: "Sucesso",
+					text: "Funcionário cadastrado",
+					type: "success"
+				} as SweetAlertOptions;
+
+				let location: string = response.headers.get('location');
+				let aux = location.split("/");
+
+				this.idNovoFuncionario = Number(aux[aux.length - 1]);
+
+				this.dialog.update(options);
+				this.dialog.fire();
 			}, error => {
-				switch (error.status) {
-					case 401:
-					  break;
-					default:
-					  let options = {
-						title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
-						text: (error.message) ? error.message : error.msg,
-					  } as SweetAlertOptions;
-		  
-					  this.dialog.update(options);
-					  this.dialog.fire();
-				  }
+				let erros: any[] = error.erros;
+
+				let msg = erros != null ? "Erro " + error.status + " " + error.msg : "Erro " + error.status + ((error.error) ? ": " + error.error : "");
+				let text = "";
+
+				if (erros != null) {
+					erros.forEach(x => {
+						text += "Campo: " + x.fieldName + ", " + x.message;
+					});
+				} else {
+					text = (error.message) ? error.message : error.msg;
+				}
+
+				let options = {
+					title: msg,
+					text: text,
+					type: "error"
+				} as SweetAlertOptions;
+
+				this.dialog.update(options);
+				this.dialog.fire();
 			});
 	}
 
@@ -266,4 +284,11 @@ export class CriarFuncionarioComponent implements OnInit {
 		this.formGroup.controls.imagem.setValue(null);
 	}
 
+	Redirecionar() {
+		if (this.dialog.type == "success") {
+			if (this.idNovoFuncionario) {
+				this.router.navigateByUrl(`/funcionarios/visualizar/${this.idNovoFuncionario}`);
+			}
+		}
+	}
 }

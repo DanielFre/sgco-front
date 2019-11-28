@@ -6,6 +6,7 @@ import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-editar-procedimento',
@@ -29,11 +30,12 @@ export class EditarProcedimentoComponent implements OnInit {
   @ViewChild('dialog', null)
   private dialog: SwalComponent;
 
+  private id;
+
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
-    console.log(id);
-    console.log(this.procedimentoService.findById(id))
-    this.procedimentoService.findById(id).subscribe(
+    this.id = (this.route.snapshot.params['id']);
+    
+    this.procedimentoService.findById(this.id).subscribe(
       response => {
         this.procedimento = response;
         console.log(response);
@@ -42,6 +44,8 @@ export class EditarProcedimentoComponent implements OnInit {
           valor: [this.procedimento.valor],
           ativo: [this.procedimento.ativo]
         });
+      }, error =>{
+        console.log(error);
       })
   }
 
@@ -49,12 +53,13 @@ export class EditarProcedimentoComponent implements OnInit {
     let aux = this.formGroup.value;
 
     let procedimento: ProcedimentoDTO = {
+      id: this.id,
       nome: aux.nome,
       valor: aux.valor,
       ativo: aux.ativo
     };
 
-    this.procedimentoService.update(procedimento)
+    this.procedimentoService.update(procedimento, procedimento.id)
       .subscribe(response => {
         let options = {
           title: "Sucesso!",

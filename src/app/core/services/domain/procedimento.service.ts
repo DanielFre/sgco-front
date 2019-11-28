@@ -12,8 +12,8 @@ export class ProcedimentoService {
     public findAll(): Observable<ProcedimentoDTO[]> {
         return this.http.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos`)
     }
-    public findById(id: number): Observable<ProcedimentoDTO[]>{
-        return this.http.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos/${id}`)
+    public findById(id): Observable<ProcedimentoDTO>{
+        return this.http.get<ProcedimentoDTO>(`${API_CONFIG.baseUrl}/procedimentos/${id}`)
     }
     
     public insert(obj: ProcedimentoDTO) {
@@ -26,9 +26,9 @@ export class ProcedimentoService {
             }
         );
     }
-    public update(obj: ProcedimentoDTO) {
-        return this.http.post(
-            `${API_CONFIG.baseUrl}/procedimentos/${obj.id}`,
+    public update(obj: ProcedimentoDTO, id: string) {
+        return this.http.put(
+            `${API_CONFIG.baseUrl}/procedimentos/${id}`,
             obj,
             {
                 observe: 'response',
