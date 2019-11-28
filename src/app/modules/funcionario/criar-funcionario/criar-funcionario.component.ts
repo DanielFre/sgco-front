@@ -36,7 +36,7 @@ export class CriarFuncionarioComponent implements OnInit {
 
 	@ViewChild('dialog', null)
 	private dialog: SwalComponent;
-	
+
 	isDentist: boolean;
 	hasUser: boolean;
 
@@ -283,9 +283,6 @@ export class CriarFuncionarioComponent implements OnInit {
 
 		this.formGroup.controls.imagem.setValue(null);
 	}
-
-	@ViewChild('dialog', null)
-	private dialog: SwalComponent;
 
 	Redirecionar() {
 		if (this.dialog.type == "success") {

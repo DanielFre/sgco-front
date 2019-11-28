@@ -30,11 +30,12 @@ export class EditarProcedimentoComponent implements OnInit {
   @ViewChild('dialog', null)
   private dialog: SwalComponent;
 
+  private id;
+
   ngOnInit() {
-    let id = (this.route.snapshot.params['id']) as string;
-    console.log(id);
-    console.log(this.procedimentoService.findById(id))
-    this.procedimentoService.findById(id).subscribe(
+    this.id = (this.route.snapshot.params['id']);
+    
+    this.procedimentoService.findById(this.id).subscribe(
       response => {
         this.procedimento = response;
         console.log(response);
@@ -43,6 +44,8 @@ export class EditarProcedimentoComponent implements OnInit {
           valor: [this.procedimento.valor],
           ativo: [this.procedimento.ativo]
         });
+      }, error =>{
+        console.log(error);
       })
   }
 
@@ -50,6 +53,7 @@ export class EditarProcedimentoComponent implements OnInit {
     let aux = this.formGroup.value;
 
     let procedimento: ProcedimentoDTO = {
+      id: this.id,
       nome: aux.nome,
       valor: aux.valor,
       ativo: aux.ativo
