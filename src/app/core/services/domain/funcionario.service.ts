@@ -32,4 +32,14 @@ export class FuncionarioService {
             }
         );
     }
+
+    public desativar(id: number) {
+        return this.http.delete(
+            `${API_CONFIG.baseUrl}/funcionarios/${id}`,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
 }

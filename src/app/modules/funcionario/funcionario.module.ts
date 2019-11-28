@@ -42,6 +42,7 @@ import { FuncionarioRoutingModule } from './funcionario.routing';
 
 import { ListarFuncionariosComponent } from './listar-funcionarios/listar-funcionarios.component';
 import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario.component';
+import { VizualizarFuncionarioComponent } from './vizualizar-funcionario/vizualizar-funcionario.component';
 
 @NgModule({
 	imports: [
@@ -95,7 +96,8 @@ import { CriarFuncionarioComponent } from './criar-funcionario/criar-funcionario
 	],
 	declarations: [
 		CriarFuncionarioComponent,
-		ListarFuncionariosComponent
+		ListarFuncionariosComponent,
+		VizualizarFuncionarioComponent
 	]
 })
 export class FuncionarioModule { }

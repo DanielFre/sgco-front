@@ -3,6 +3,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FuncionarioService } from 'app/core/services/domain/funcionario.service';
 import { FuncionarioGetDTO } from 'app/core/models/funcionario-get.dto';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { SweetAlertOptions } from 'sweetalert2';
 
 /**
  * @title Data table with sorting, pagination, and filtering.
@@ -54,7 +56,16 @@ export class ListarFuncionariosComponent implements OnInit {
 
 				this.totalSize = response['totalPages'];
 			},
-				error => { }
+				error => {
+					let options = {
+						title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
+						text: (error.message) ? error.message : error.msg,
+						type: "error"
+					} as SweetAlertOptions;
+
+					this.dialog.update(options);
+					this.dialog.fire();
+				}
 			);
 	}
 
@@ -64,5 +75,42 @@ export class ListarFuncionariosComponent implements OnInit {
 		this.orderBy = 'nome';
 		this.direction = 'ASC';
 	}
+
+	private idAtual: number;
+
+	public setIdAtual(id: number) {
+		this.idAtual = id;
+	}
+
+	@ViewChild('dialog', null)
+	private dialog: SwalComponent;
+
+	public Desativar() {
+		this.funcionarioService.desativar(this.idAtual)
+			.subscribe(response => {
+				let options = {
+					title: "Sucesso",
+					text: "Funcionário desativado",
+					type: "success"
+				} as SweetAlertOptions;
+
+				this.dialog.update(options);
+				this.dialog.fire();
+
+				this.pesquisar(false);
+			},
+				error => {
+					let options = {
+						title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
+						text: (error.message) ? error.message : error.msg,
+						type: "error"
+					} as SweetAlertOptions;
+
+					this.dialog.update(options);
+					this.dialog.fire();
+				}
+			);
+	}
+
 
 }
