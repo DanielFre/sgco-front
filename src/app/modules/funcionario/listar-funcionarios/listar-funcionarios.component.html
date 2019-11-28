@@ -86,7 +86,7 @@
                                     <button mat-button class="btn btn-success" type="button">
                                         <i class="material-icons">edit</i>
                                     </button>
-                                    <button mat-button class="btn btn-danger" type="button" [swal]="deleteSwal">
+                                    <button *ngIf="element.ativo" mat-button class="btn btn-danger" type="button" (click)="setIdAtual(element.id)" [swal]="desativar">
                                         <i class="material-icons">close</i>
                                     </button>
                                 </td>
@@ -104,4 +104,5 @@
     </div>
 </div>
 
-<swal #deleteSwal title="Delete?" text="This cannot be undone" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteUser()"> </swal>
+<swal #desativar title="Desativar funcionário?" text="Isso também desativará o acesso caso o mesmo possua" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="Desativar()"> </swal>
+<swal #dialog title="" text="" type="success"></swal>

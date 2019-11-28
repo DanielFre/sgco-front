@@ -4,12 +4,12 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header card-header-primary">
-						<h4 class="card-title">Cadastrar novo funcionário</h4>
-						<p class="card-category">Preencha o formulário abaixo</p>
+						<h4 class="card-title">Visualizar funcionário</h4>
+						<p class="card-category">...</p>
 					</div>
 					<h4 class="card-body card-title pb-0">Dados Pessoais</h4>
 					<div class="card-body pt-0">
-						<form [formGroup]="formGroup" (ngSubmit)="cadastrar(); $event.preventDefault()">
+						<form>
 							<div class="row">
 								<div class="col-md-4">
 									<mat-form-field class="example-full-width">
@@ -175,14 +175,14 @@
 									</div>
 									<div class="col-md-3">
 										<mat-form-field class="example-full-width">
-											<input formControlName="senha" matInput placeholder="Senha" type="password">
+											<input formControlName="senha" matInput placeholder="Senha" type="password" readonly>
 										</mat-form-field>
 									</div>
 
 									<div class="col-md-3">
 										<mat-form-field>
 											<mat-label>Permissões</mat-label>
-											<mat-select formControlName="permissoes" matNativeControl multiple>
+											<mat-select formControlName="permissoes" matNativeControl multiple readonly>
 												<mat-option *ngFor="let permissao of permissoes;" [value]="permissao.cod">{{permissao.descricao}}</mat-option>
 											</mat-select>
 										</mat-form-field>
@@ -191,7 +191,7 @@
 									<div class="col-md-2">
 										<div class="form-check">
 											<label class="form-check-label">
-												<input formControlName="ativo" class="form-check-input" type="checkbox">
+												<input formControlName="ativo" class="form-check-input" type="checkbox" readonly>
 												Ativo
 												<span class="form-check-sign">
 													<span class="check"></span>
@@ -203,29 +203,11 @@
 
 								<div class="row">
 									<div class="col-md-12">
-										<label class="image-upload-container btn btn-primary">
-											<span>Selecione uma imagem de perfil</span>
-											<input class="d-none" #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
-										</label>
-
 										<div *ngIf="selectedFile" class="img-preview-container">
 											<div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}" [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
 											</div>
-
-											<div *ngIf="selectedFile.pending" class="img-loading-overlay">
-												<div class="img-spinning-circle"></div>
-											</div>
-
-											<div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Não foi possível selecionar a imgem!</div>
 										</div>
 									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-12">
-									<button mat-raised-button type="submit" class="btn btn-primary pull-right" [disabled]="formGroup.invalid">Cadastrar</button>
-									<div class="clearfix"></div>
 								</div>
 							</div>
 						</form>
@@ -235,5 +217,3 @@
 		</div>
 	</div>
 </div>
-
-<swal #dialog title="" text="" type="success" (confirm)="Redirecionar()" (close)="Redirecionar()"></swal>
