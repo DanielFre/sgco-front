@@ -6,6 +6,7 @@ import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-editar-procedimento',
@@ -30,7 +31,7 @@ export class EditarProcedimentoComponent implements OnInit {
   private dialog: SwalComponent;
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
+    let id = (this.route.snapshot.params['id']) as string;
     console.log(id);
     console.log(this.procedimentoService.findById(id))
     this.procedimentoService.findById(id).subscribe(
@@ -54,7 +55,7 @@ export class EditarProcedimentoComponent implements OnInit {
       ativo: aux.ativo
     };
 
-    this.procedimentoService.update(procedimento)
+    this.procedimentoService.update(procedimento, procedimento.id)
       .subscribe(response => {
         let options = {
           title: "Sucesso!",
