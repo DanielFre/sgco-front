@@ -12,10 +12,23 @@ export class ProcedimentoService {
     public findAll(): Observable<ProcedimentoDTO[]> {
         return this.http.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos`)
     }
+    public findById(id: number): Observable<ProcedimentoDTO[]>{
+        return this.http.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos/${id}`)
+    }
     
     public insert(obj: ProcedimentoDTO) {
         return this.http.post(
             `${API_CONFIG.baseUrl}/procedimentos`,
+            obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+    public update(obj: ProcedimentoDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/procedimentos/${obj.id}`,
             obj,
             {
                 observe: 'response',

@@ -3,7 +3,7 @@ import { ProcedimentoService } from 'app/core/services/domain/procedimento.servi
 import { ProcedimentoDTO } from 'app/core/models/procedimento.dto';
 import { Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { SweetAlertOptions } from 'sweetalert2';
+import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -62,6 +62,11 @@ export class ListarProcedimentosComponent implements OnInit {
 
 	public redirecionar() {
 		this.router.navigateByUrl('/home');
+	}
+
+	public update(row) {
+		console.log(row.id);
+		this.router.navigateByUrl("procedimentos/editar/"+ row.id);
 	}
 
 }

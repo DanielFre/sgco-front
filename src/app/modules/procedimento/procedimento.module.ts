@@ -42,6 +42,7 @@ import { ProcedimentoRoutingModule } from './procedimento.routing';
 
 import { ListarProcedimentosComponent } from './listar-procedimentos/listar-procedimentos.component';
 import { CriarProcedimentoComponent } from './criar-procedimento/criar-procedimento.component';
+import { EditarProcedimentoComponent } from './editar-procedimento/editar-procedimento.component';
 
 @NgModule({
   imports: [
@@ -95,7 +96,8 @@ import { CriarProcedimentoComponent } from './criar-procedimento/criar-procedime
   ],
   declarations: [
     ListarProcedimentosComponent,
-    CriarProcedimentoComponent
+    CriarProcedimentoComponent,
+    EditarProcedimentoComponent
   ]
 })
 export class ProcedimentoModule { }
