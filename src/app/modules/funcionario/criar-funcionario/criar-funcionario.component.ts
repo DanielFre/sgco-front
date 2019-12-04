@@ -85,7 +85,7 @@ export class CriarFuncionarioComponent implements OnInit {
 
 			email: [null, [Validators.required]],
 			telefone1: [null, [Validators.required]],
-			telefone2: [null, [Validators.required]],
+			telefone2: [null],
 
 			senha: [null],
 			ativo: [null],

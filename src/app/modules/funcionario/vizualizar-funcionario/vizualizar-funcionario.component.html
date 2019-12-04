@@ -5,7 +5,7 @@
 				<div class="card">
 					<div class="card-header card-header-primary">
 						<h4 class="card-title">Visualizar funcionário</h4>
-						<p class="card-category">...</p>
+						<p class="card-category">{{funcionario?.nome}}</p>
 					</div>
 					<h4 class="card-body card-title pb-0">Dados Pessoais</h4>
 					<div class="card-body pt-0">
@@ -13,14 +13,12 @@
 							<div class="row">
 								<div class="col-md-4">
 									<mat-form-field class="example-full-width">
-										<input formControlName="nome" matInput placeholder="Nome" type="text" required>
+										<input matInput placeholder="Nome" type="text" readonly [value]="funcionario?.nome">
 									</mat-form-field>
 								</div>
 								<div class="col-md-4">
 									<mat-form-field>
-										<input formControlName="nascimento" matInput [matDatepicker]="picker" placeholder="Data de Nascimento" required>
-										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-										<mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+										<input matInput placeholder="Data de Nascimento" readonly [value]="funcionario?.nascimento">
 									</mat-form-field>
 								</div>
 							</div>
@@ -28,43 +26,36 @@
 							<div class="row">
 								<div class="col-md-4">
 									<mat-form-field class="example-full-width">
-										<input formControlName="rg" matInput placeholder="RG" type="text" required>
+										<input matInput placeholder="RG" type="text" readonly [value]="funcionario?.rg">
 									</mat-form-field>
 								</div>
 								<div class="col-md-4">
 									<mat-form-field class="example-full-width">
-										<input formControlName="cpf" matInput placeholder="CPF" type="text" required>
+										<input matInput placeholder="CPF" type="text" readonly [value]="funcionario?.cpf">
 									</mat-form-field>
 								</div>
 								<div class="col-md-4">
-									<mat-form-field>
-										<mat-label>Sexo</mat-label>
-										<mat-select formControlName="sexo" matNativeControl required>
-											<mat-option value="M">Masculino</mat-option>
-											<mat-option value="F">Feminino</mat-option>
-										</mat-select>
+									<mat-form-field class="example-full-width">
+										<input *ngIf="funcionario?.sexo == 'M'" matInput placeholder="Sexo" type="text" readonly value="Masculino">
+										<input *ngIf="funcionario?.sexo == 'F'" matInput placeholder="Sexo" type="text" readonly value="Feminino">
 									</mat-form-field>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-4">
-									<mat-form-field>
-										<mat-label>Tipo de Funcionário</mat-label>
-										<mat-select formControlName="tipo" (selectionChange)="updateTipo()" matNativeControl required>
-											<mat-option *ngFor="let tipo of tiposFuncionarios;" [value]="tipo.cod">{{tipo.descricao}}</mat-option>
-										</mat-select>
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Tipo de Funcionário" type="text" readonly [value]="tipoFuncionario">
 									</mat-form-field>
 								</div>
 								<div class="col-md-4" *ngIf="isDentist">
 									<mat-form-field class="example-full-width">
-										<input class="height-15" formControlName="corAgenda" matInput placeholder="Cor para Agenda" type="color">
+										<input matInput class="height-15" placeholder="Cor para Agenda" type="color" readonly [value]="funcionario?.corAgenda">
 									</mat-form-field>
-									<!-- <button mat-raised-button type="submit" class="btn" [style.background]="color1" [(colorPicker)]="color1" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)" (colorPickerClose)="onEventLog('colorPickerClose', $event)" (cpInputChange)="onEventLog('cpInputChange', $event)" (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)" (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)">Cor para agenda</button> -->
 								</div>
 								<div class="col-md-4" *ngIf="isDentist">
 									<mat-form-field class="example-full-width">
-										<input formControlName="crmCro" matInput placeholder="CRM ou CRO" type="text">
+										<input matInput placeholder="CRM ou CRO" type="text" readonly [value]="funcionario?.crmCro">
 									</mat-form-field>
 								</div>
 							</div>
@@ -74,17 +65,17 @@
 								<div class="row">
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="logradouro" matInput placeholder="Logradouro" type="text" required>
+											<input matInput placeholder="Logradouro" type="text" readonly [value]="funcionario?.endereco?.logradouro">
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="bairro" matInput placeholder="Bairro" type="text" required>
+											<input matInput placeholder="Bairro" type="text" readonly [value]="funcionario?.endereco?.bairro">
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="numero" matInput placeholder="Número" type="text" required>
+											<input matInput placeholder="Número" type="text" readonly [value]="funcionario?.endereco?.numero">
 										</mat-form-field>
 									</div>
 								</div>
@@ -92,39 +83,30 @@
 								<div class="row">
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="cep" matInput placeholder="CEP" type="text" required>
+											<input matInput placeholder="CEP" type="text" readonly [value]="funcionario?.endereco?.cep">
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="complemento" matInput placeholder="Complemento" type="text">
+											<input matInput placeholder="Complemento" type="text" readonly [value]="funcionario?.endereco?.complemento">
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
-										<mat-form-field>
-											<mat-label>Pais</mat-label>
-											<mat-select formControlName="idPais" (selectionChange)="updateEstados()" matNativeControl required>
-												<mat-option *ngFor="let pais of paises;" [value]="pais.id">{{pais.nome}}</mat-option>
-											</mat-select>
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Pais" type="text" readonly [value]="funcionario?.endereco?.cidade?.estado?.pais?.nome">
 										</mat-form-field>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-md-4">
-										<mat-form-field>
-											<mat-label>Estado</mat-label>
-											<mat-select formControlName="idEstado" (selectionChange)="updateCidades()" matNativeControl required>
-												<mat-option *ngFor="let estado of estados;" [value]="estado.id">{{estado.nome}}</mat-option>
-											</mat-select>
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Estado" type="text" readonly [value]="funcionario?.endereco?.cidade?.estado?.nome">
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
-										<mat-form-field>
-											<mat-label>Cidade</mat-label>
-											<mat-select formControlName="idCidade" matNativeControl required>
-												<mat-option *ngFor="let cidade of cidades;" [value]="cidade.id">{{cidade.nome}}</mat-option>
-											</mat-select>
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Cidade" type="text" readonly [value]="funcionario?.endereco?.cidade?.nome">
 										</mat-form-field>
 									</div>
 								</div>
@@ -135,32 +117,18 @@
 								<div class="row">
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="email" matInput placeholder="E-mail" type="email" [value]="formGroup.value.email" required>
+											<input matInput placeholder="E-mail" type="email" readonly [value]="funcionario?.contato?.email">
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="telefone1" matInput placeholder="Telefone" type="tel" required>
+											<input matInput placeholder="Telefone" type="tel" readonly [value]="funcionario?.contato?.telefone1">
 										</mat-form-field>
 									</div>
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="telefone2" matInput placeholder="Telefone 2" type="tel">
+											<input matInput placeholder="Telefone 2" type="tel" readonly [value]="funcionario?.contato?.telefone2">
 										</mat-form-field>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-4">
-									<div class="form-check">
-										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox" (click)="isWorkerUser()" value="{{isUser}}">
-											Adicionar Usuário
-											<span class="form-check-sign">
-												<span class="check"></span>
-											</span>
-										</label>
 									</div>
 								</div>
 							</div>
@@ -170,42 +138,30 @@
 								<div class="row">
 									<div class="col-md-4">
 										<mat-form-field class="example-full-width">
-											<input formControlName="email" matInput placeholder="Login" type="email" [value]="formGroup.value.email">
-										</mat-form-field>
-									</div>
-									<div class="col-md-3">
-										<mat-form-field class="example-full-width">
-											<input formControlName="senha" matInput placeholder="Senha" type="password" readonly>
-										</mat-form-field>
-									</div>
-
-									<div class="col-md-3">
-										<mat-form-field>
-											<mat-label>Permissões</mat-label>
-											<mat-select formControlName="permissoes" matNativeControl multiple readonly>
-												<mat-option *ngFor="let permissao of permissoes;" [value]="permissao.cod">{{permissao.descricao}}</mat-option>
-											</mat-select>
+											<input matInput placeholder="Login" type="email" readonly [value]="funcionario?.usuario?.login">
 										</mat-form-field>
 									</div>
 
 									<div class="col-md-2">
-										<div class="form-check">
-											<label class="form-check-label">
-												<input formControlName="ativo" class="form-check-input" type="checkbox" readonly>
-												Ativo
-												<span class="form-check-sign">
-													<span class="check"></span>
-												</span>
-											</label>
-										</div>
+										<mat-form-field class="example-full-width">
+											<input *ngIf="funcionario?.usuario?.ativo" matInput placeholder="Status" type="email" readonly value="Atvio">
+											<input *ngIf="!funcionario?.usuario?.ativo" matInput placeholder="Status" type="email" readonly value="Inativo">
+										</mat-form-field>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-md-12">
-										<div *ngIf="selectedFile" class="img-preview-container">
-											<div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}" [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
-											</div>
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Permissões" type="text"  readonly [value]="permissoesStr">
+										</mat-form-field>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<div *ngIf="imageToShow" class="img-preview-container">
+											<img class="img-preview" [src]="imageToShow" />
 										</div>
 									</div>
 								</div>

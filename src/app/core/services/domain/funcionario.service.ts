@@ -15,6 +15,10 @@ export class FuncionarioService {
         return this.http.get<TipoFuncionarioDTO[]>(`${API_CONFIG.baseUrl}/funcionarios/tipos`)
     }
 
+    public findyById(id: number): Observable<FuncionarioDTO> {
+        return this.http.get<FuncionarioDTO>(`${API_CONFIG.baseUrl}/funcionarios/${id}`);
+    }
+
     public findByFilter(nome: string, situacao: boolean, page: number, linesPerPage: number, orderBy: string, direction: string): Observable<FuncionarioGetDTO[]> {
         let parametros: string = `?nome=${nome ? nome : ''}&ativo=${situacao ? situacao : ''}`;
         parametros += `&page=${page}&linesPerPage=${linesPerPage}&orderBy=${orderBy}&direction=${direction}`;

@@ -6,7 +6,7 @@ export interface EnderecoDTO {
     cep: string;
     complemento: string;
     idCidade: number;
-    cidade?: string;
+    cidade?: any;
     estado?: string;
     pais?: string;
 }

@@ -5,6 +5,7 @@ import { FuncionarioService } from 'app/core/services/domain/funcionario.service
 import { FuncionarioGetDTO } from 'app/core/models/funcionario-get.dto';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { SweetAlertOptions } from 'sweetalert2';
+import { Router } from '@angular/router';
 
 /**
  * @title Data table with sorting, pagination, and filtering.
@@ -29,7 +30,10 @@ export class ListarFuncionariosComponent implements OnInit {
 	public orderBy = 'nome';
 	public direction = 'ASC';
 
-	constructor(private funcionarioService: FuncionarioService) { }
+	constructor(
+		private funcionarioService: FuncionarioService,
+		private router: Router
+	) { }
 
 	ngOnInit() {
 	}
@@ -112,5 +116,8 @@ export class ListarFuncionariosComponent implements OnInit {
 			);
 	}
 
+	visualizar(id: number) {
+		this.router.navigateByUrl(`/funcionarios/visualizar/${id}`);
+	}
 
 }
