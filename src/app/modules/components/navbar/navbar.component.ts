@@ -20,6 +20,7 @@ const TITLES: TitleInfo[] = [
     { path: '/procedimentos', title: 'Procedimentos' },
     { path: '/procedimentos/listar', title: 'Procedimentos' },
     { path: '/procedimentos/cadastrar', title: 'Cadastrar' },
+    { path: '/procedimentos/editar', title: 'Editar' },
 
     { path: '/agenda', title: 'Agenda' },
     { path: '/agenda/listar', title: 'Agenda' },

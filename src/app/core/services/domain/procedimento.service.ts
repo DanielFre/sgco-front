@@ -12,6 +12,14 @@ export class ProcedimentoService {
     public findAll(): Observable<ProcedimentoDTO[]> {
         return this.http.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos`)
     }
+
+    public findByFilter(nome: string, situacao: boolean, page: number, linesPerPage: number, orderBy: string, direction: string): Observable<ProcedimentoDTO[]> {
+        let parametros: string = `?nome=${nome ? nome : ''}&ativo=${situacao ? situacao : ''}`;
+        parametros += `&page=${page}&linesPerPage=${linesPerPage}&orderBy=${orderBy}&direction=${direction}`;
+
+        return this.http.get<ProcedimentoDTO[]>(`${API_CONFIG.baseUrl}/procedimentos/page/${parametros}`)
+    }
+
     public findById(id): Observable<ProcedimentoDTO>{
         return this.http.get<ProcedimentoDTO>(`${API_CONFIG.baseUrl}/procedimentos/${id}`)
     }

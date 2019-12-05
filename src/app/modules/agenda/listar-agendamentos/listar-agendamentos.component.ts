@@ -9,6 +9,8 @@ import { FuncionarioService } from 'app/core/services/domain/funcionario.service
 import Swal from 'sweetalert2';
 import Popover from '@fullcalendar/daygrid/Popover';
 import { Router } from '@angular/router';
+import { AgendamentoService } from 'app/core/services/domain/agendamento.service';
+import { AgendamentoDTO } from 'app/core/models/agendamento.dto';
 
 @Component({
   selector: 'app-listar-agendamentos',
@@ -17,15 +19,17 @@ import { Router } from '@angular/router';
 })
 export class ListarAgendamentosComponent implements OnInit {
 
-  constructor(private router: Router){
-    
+  constructor(private router: Router) {
+
   }
 
+  agendamentos: AgendamentoDTO[];
   options: OptionsInput;
   eventsModel: any;
+  calendarEvents = {};
   @ViewChild('fullcalendar', { static: false }) fullcalendar: FullCalendarComponent;
   ngOnInit() {
-    
+
     this.options = {
       editable: true,
       navLinks: true,
@@ -42,11 +46,11 @@ export class ListarAgendamentosComponent implements OnInit {
       },
       customButtons: {
         myCustomButton: {
-          text: 'Novo Agendamento', click: ()=>{
+          text: 'Novo Agendamento', click: () => {
             this.router.navigateByUrl('agenda/cadastrar');
           }
         }
-      }, 
+      },
       header: {
         left: 'prev,next, today myCustomButton',
         center: 'title',
@@ -54,7 +58,6 @@ export class ListarAgendamentosComponent implements OnInit {
       },
       plugins: [dayGridPlugin, interactionPlugin, timeGrigPlugin, listPlugin]
     };
-
   }
   eventClick(model) {
     console.log(model);
@@ -73,11 +76,7 @@ export class ListarAgendamentosComponent implements OnInit {
     };
   }
   updateEvents() {
-    this.eventsModel = [{
-      title: 'Updaten Event',
-      start: this.yearMonth + '-08',
-      end: this.yearMonth + '-10'
-    }];
+    this.calendarEvents = this.agendamentos;
   }
   get yearMonth(): string {
     const dateObj = new Date();

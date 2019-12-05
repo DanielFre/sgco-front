@@ -19,11 +19,6 @@ export class EditarProcedimentoComponent implements OnInit {
   formGroup: FormGroup;
   procedimento: any;
   constructor(public formBuilder: FormBuilder, private procedimentoService: ProcedimentoService, private router: Router, private route: ActivatedRoute) {
-    this.formGroup = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
-      valor: ['', [Validators.required]],
-      ativo: [true]
-    });
 
   }
 
@@ -38,10 +33,10 @@ export class EditarProcedimentoComponent implements OnInit {
     this.procedimentoService.findById(this.id).subscribe(
       response => {
         this.procedimento = response;
-        console.log(response);
+
         this.formGroup = this.formBuilder.group({
-          nome: [this.procedimento.id],
-          valor: [this.procedimento.valor],
+          nome: [this.procedimento.nome, [Validators.required, Validators.minLength(5), Validators.maxLength(60)]],
+          valor: [this.procedimento.valor, [Validators.required]],
           ativo: [this.procedimento.ativo]
         });
       }, error =>{
@@ -79,6 +74,7 @@ export class EditarProcedimentoComponent implements OnInit {
             let options = {
               title: "Erro " + error.status + ((error.error) ? ": " + error.error : ""),
               text: (error.message) ? error.message : error.msg,
+              type: 'error'
             } as SweetAlertOptions;
 
             this.dialog.update(options);
