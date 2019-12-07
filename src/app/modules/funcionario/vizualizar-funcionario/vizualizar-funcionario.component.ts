@@ -13,13 +13,13 @@ import { PermissaoDTO } from 'app/core/models/permissao.dto';
 })
 export class VizualizarFuncionarioComponent implements OnInit {
 
-	public userId;
+	userId;
 
-	private funcionario: FuncionarioDTO;
-	private tipoFuncionario: string;
-	private isDentist: boolean;
-	private hasUser: boolean;
-	private permissoesStr: string = "";
+	funcionario: FuncionarioDTO;
+	tipoFuncionario: string;
+	isDentist: boolean;
+	hasUser: boolean;
+	permissoesStr: string = "";
 	imageToShow: any;
 
 	tiposFuncionarios: TipoFuncionarioDTO[];
