@@ -1,0 +1,121 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="margem">
+              <button class="btn btn-primary" [swal]="cancelCreateConta"  >
+                <i class="material-icons"> arrow_back </i>
+              </button>
+              
+
+            </div>
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Criar Conta</h4>
+            <p class="card-category">Preencha todos os campos abaixo para cadastrar uma nova Conta</p>
+          </div>
+          <div class="card-body">
+            <form>
+                <div class="row">
+                  <div class="col-md-10">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder ="Nome da Conta" type="text">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-10">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder ="Tipo de Conta" type="text">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <mat-form-field>
+                      <mat-label>Status</mat-label>
+                      <select matNativeControl required>
+                        <option value="true">Ativa</option>
+                        <option value="false">Inativa</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                </div>
+             
+              <button mat-raised-button type="submit" class="btn btn-primary pull-right" 
+                   [swal]="sucesso" >Cadastrar Conta</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <swal 
+    #cancelCreateConta
+    title="Todas as alterações não salvas serão perdidas, Continuar?" 
+    type="question"
+
+    [showCancelButton]="true" 
+    confirmButtonText= "Sim"
+
+    [focusCancel]="true" 
+    cancelButtonText= "Não"
+    cancelButtonColor= "#DD6B55"
+
+    (confirm)="CancelCreateConta()">
+  </swal>
+
+  <!-- <swal 
+    #CreatePacient 
+    title="Deseja confirmar o cadastro de uma nova Conta?" 
+    type="question"
+
+    [showCancelButton]="true" 
+    confirmButtonText= "Sim"
+    [focusConfirm]="true" 
+
+    cancelButtonText= "Não"
+    cancelButtonColor= "#DD6B55"
+
+    (confirm)="CreateConta()">
+  
+  </swal> -->
+
+  <swal
+    #sucesso
+    title= "Conta cadastrada com sucesso!"
+    type= "success"
+    confirmButtonText= "ok"
+    (confirm)="CreateConta()">
+    
+  </swal>
+  
+<!-- modelo de teste abaixo, ou seja, ñ esta sendo usado -->
+<!-- swal({
+  title: "Are you sure?",
+  text: "You will not be able to recover this imaginary file!",
+  type: "warning",
+  showCancelButton: true,
+  cancelButtonColor: "#DD6B55",
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel please!",
+  closeOnConfirm: false,
+  closeOnCancel: false
+}, function (isConfirm) {
+  if (isConfirm) {
+      swal("Deleted!", "Your imaginary file has been deleted.", "success");
+  } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+  }
+}); -->
+
+<!-- https://sweetalert.js.org/guides/ -->
+
+<!-- https://github.com/sweetalert2/ngx-sweetalert2 -->
+
+</div>

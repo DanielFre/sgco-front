@@ -1,0 +1,71 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Cadastrar novo agendamento</h4>
+            <p class="card-category">Preencha o formulário abaixo</p>
+          </div>
+          <h4 class="card-body card-title pb-0">Alguma coisa pra usar espaço</h4>
+          <div class="card-body pt-0">
+            <form novalidate [formGroup]="formGroup">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <!-- Mudar pais para dentistas -->
+                    <mat-label>Dentista</mat-label>
+                    <mat-select formControlName="nomeDentista" matNativeControl required>
+                      <mat-option> </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input formControlName="nomePaciente" matInput placeholder="Nome do Paciente" type="text" required>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input formControlName="dataHoraInicio" matInput placeholder="Início da consulta" type="text">
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input formControlName="dataHoraFim" matInput placeholder="Término da consulta" type="text">
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <textarea formControlName="observacao" matInput placeholder="Observações"></textarea>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Procedimento</mat-label>
+                    <mat-select formControlName="procedimento" matNativeControl required>
+                      <mat-option *ngFor="let procedimento of procedimentos" [value]="procedimento.id">
+                        {{procedimento.nome}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <button mat-raised-button type="back" class="btn btn-primary pull-left">Voltar</button>
+                  <button mat-raised-button type="submit" class="btn btn-primary pull-left">Agendar</button>
+                  <div class="clearfix"></div>
+
+
+                </div>
+                <div class="col-md-8">
+                  <full-calendar *ngIf="options" #fullcalendar [defaultView]="options.defaultView" [editable]="true"
+                    [events]="eventsModel" [header]="options.header" [buttonText]="options.buttonText"
+                    (dateClick)="dateClick($event)" (eventDragStop)="eventDragStop($event)" [plugins]="options.plugins"
+                    (eventClick)="eventClick($event)" [locale]="options.locale" [navLinks]="true"
+                    [slotDuration]="options.slotDuration" [allDayText]="options.allDayText"
+                    [slotLabelInterval]="options.slotLabelInterval" [slotLabelFormat]="options.slotLabelFormat"
+                    [selectable]="options.selectable" >
+                  </full-calendar>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

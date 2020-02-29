@@ -1,34 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AuthenticationComponent } from './modules/authentication/authentication.component';
+import { AdminLayoutComponent } from './modules/components/admin-layout/admin-layout.component';
 
-const routes: Routes =[
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-    }]
-  }
+const routes: Routes = [
+	{ path: '', component: AuthenticationComponent, loadChildren: './modules/authentication/authentication.module#AuthenticationModule' },
+
+	{ path: 'home', component: AdminLayoutComponent, loadChildren: './modules/home/home.module#HomeModule' },
+	{ path: 'agenda', component: AdminLayoutComponent, loadChildren: './modules/agenda/agenda.module#AgendaModule' },
+	{ path: 'pacientes', component: AdminLayoutComponent, loadChildren: './modules/paciente/paciente.module#PacienteModule' },
+	{ path: 'funcionarios', component: AdminLayoutComponent, loadChildren: './modules/funcionario/funcionario.module#FuncionarioModule' },
+	{ path: 'procedimentos', component: AdminLayoutComponent, loadChildren: './modules/procedimento/procedimento.module#ProcedimentoModule' },
+	{ path: 'financeiro', component: AdminLayoutComponent, loadChildren: './modules/financeiro/financeiro.module#FinanceiroModule' }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule.forRoot(routes,{
-       useHash: true
-    })
-  ],
-  exports: [
-  ],
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

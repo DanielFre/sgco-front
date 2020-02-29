@@ -1,0 +1,175 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Visualizar funcionário</h4>
+						<p class="card-category">{{funcionario?.nome}}</p>
+					</div>
+					<h4 class="card-body card-title pb-0">Dados Pessoais</h4>
+					<div class="card-body pt-0">
+						<form>
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Nome" type="text" readonly [value]="funcionario?.nome">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field>
+										<input matInput placeholder="Data de Nascimento" readonly [value]="funcionario?.nascimento">
+									</mat-form-field>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="RG" type="text" readonly [value]="funcionario?.rg">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="CPF" type="text" readonly [value]="funcionario?.cpf">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input *ngIf="funcionario?.sexo == 'M'" matInput placeholder="Sexo" type="text" readonly value="Masculino">
+										<input *ngIf="funcionario?.sexo == 'F'" matInput placeholder="Sexo" type="text" readonly value="Feminino">
+									</mat-form-field>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Tipo de Funcionário" type="text" readonly [value]="tipoFuncionario">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4" *ngIf="isDentist">
+									<mat-form-field class="example-full-width">
+										<input matInput class="height-15" placeholder="Cor para Agenda" type="color" readonly [value]="funcionario?.corAgenda">
+									</mat-form-field>
+								</div>
+								<div class="col-md-4" *ngIf="isDentist">
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="CRM ou CRO" type="text" readonly [value]="funcionario?.crmCro">
+									</mat-form-field>
+								</div>
+							</div>
+
+							<h4 class="card-body card-title pl-0 pb-0">Endereço</h4>
+							<div class="card-body pl-0 pr-0 pt-0 pb-0">
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Logradouro" type="text" readonly [value]="funcionario?.endereco?.logradouro">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Bairro" type="text" readonly [value]="funcionario?.endereco?.bairro">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Número" type="text" readonly [value]="funcionario?.endereco?.numero">
+										</mat-form-field>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="CEP" type="text" readonly [value]="funcionario?.endereco?.cep">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Complemento" type="text" readonly [value]="funcionario?.endereco?.complemento">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Pais" type="text" readonly [value]="funcionario?.endereco?.cidade?.estado?.pais?.nome">
+										</mat-form-field>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Estado" type="text" readonly [value]="funcionario?.endereco?.cidade?.estado?.nome">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Cidade" type="text" readonly [value]="funcionario?.endereco?.cidade?.nome">
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+
+							<h4 class="card-body card-title pl-0 pb-0">Contato</h4>
+							<div class="card-body pl-0 pr-0 pt-0 pb-0">
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="E-mail" type="email" readonly [value]="funcionario?.contato?.email">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Telefone" type="tel" readonly [value]="funcionario?.contato?.telefone1">
+										</mat-form-field>
+									</div>
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Telefone 2" type="tel" readonly [value]="funcionario?.contato?.telefone2">
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+
+							<h4 class="card-body card-title pl-0 pb-0" *ngIf="hasUser">Dados do Usuário</h4>
+							<div class="card-body pl-0 pr-0 pt-0 pb-0" *ngIf="hasUser">
+								<div class="row">
+									<div class="col-md-4">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Login" type="email" readonly [value]="funcionario?.usuario?.login">
+										</mat-form-field>
+									</div>
+
+									<div class="col-md-2">
+										<mat-form-field class="example-full-width">
+											<input *ngIf="funcionario?.usuario?.ativo" matInput placeholder="Status" type="email" readonly value="Atvio">
+											<input *ngIf="!funcionario?.usuario?.ativo" matInput placeholder="Status" type="email" readonly value="Inativo">
+										</mat-form-field>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<mat-form-field class="example-full-width">
+											<input matInput placeholder="Permissões" type="text"  readonly [value]="permissoesStr">
+										</mat-form-field>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<div *ngIf="imageToShow" class="img-preview-container">
+											<img class="img-preview" [src]="imageToShow" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

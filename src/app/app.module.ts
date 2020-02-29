@@ -1,47 +1,64 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { ComponentsModule } from './modules/components/components.module';
 
 import { AppRoutingModule } from './app.routing';
-import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
+import { AuthenticationComponent } from './modules/authentication/authentication.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
-import {
-  AgmCoreModule
-} from '@agm/core';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
+import { AuthInterceptorProvider } from './core/interceptors/auth-interceptor';
+import { ErrorInterceptorProvider } from './core/interceptors/error-interceptor';
+import { StorageService } from './core/services/storage.service';
+import { AuthService } from './core/services/auth.service';
+import { UsuarioService } from './core/services/domain/usuario.service';
+import { ProcedimentoService } from './core/services/domain/procedimento.service';
+import { PaisService } from './core/services/domain/pais.service';
+import { EstadoService } from './core/services/domain/estado.service';
+import { CidadeService } from './core/services/domain/cidade.service';
+import { FuncionarioService } from './core/services/domain/funcionario.service';
+import { AuthGuard } from './core/interceptors/auth.guard';
 
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    ComponentsModule,
-    RouterModule,
-    AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
-  ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
+	imports: [
+		BrowserAnimationsModule,
 
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+		HttpClientModule,
+		RouterModule,
+
+		ComponentsModule,
+
+		AppRoutingModule
+	],
+	declarations: [
+		AppComponent,
+
+		AuthenticationComponent
+	],
+	providers: [
+		{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+		{ provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS] },
+		{ provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+
+		AuthInterceptorProvider,
+		ErrorInterceptorProvider,
+		StorageService,
+		AuthService,
+		UsuarioService,
+		ProcedimentoService,
+		PaisService,
+		EstadoService,
+		CidadeService,
+		FuncionarioService,
+		AuthGuard
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

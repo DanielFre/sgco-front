@@ -74,7 +74,9 @@
                     display: inline-block;
                     @extend .animation-transition-general;
                 }
-
+                .caret{
+                    transform: rotate(180deg);
+                }
                 .sidebar-normal{
                     margin: 0;
                     position: relative;
@@ -128,8 +130,11 @@
             margin-top: 13px;
             position: absolute;
             right: 6px;
+            &.active > [data-toggle="collapse"]{
+                transform: rotate(180deg);
+            }
         }
-
+        
         li{
             > a{
               &:hover,
@@ -375,8 +380,8 @@
     @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
 
      .main-content{
-        margin-top: 70px;
-        padding: 30px 15px;
+        margin-top: 60px;
+        padding: 10px 15px 10px 15px;
         min-height: calc(100vh - 123px);
     }
 
@@ -405,7 +410,6 @@
         max-height: 100%;
     }
 }
-
 
 .sidebar,
 .main-panel,
@@ -464,6 +468,7 @@
                     @include transform-translate-x(-25px);
                     opacity: 0;
                 }
+                
             }
         }
 
